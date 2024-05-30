@@ -33,10 +33,10 @@ void run_StartDefaultTask();
 // UART Driver
 class UARTDriver;
 namespace Driver {
-    extern UARTDriver uart8;
+    extern UARTDriver uart6;
 }
 namespace UART {
-    constexpr UARTDriver* Debug = &Driver::uart8;
+    constexpr UARTDriver* Debug = &Driver::uart6;
 }
 
 

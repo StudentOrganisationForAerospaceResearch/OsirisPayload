@@ -174,16 +174,16 @@ void TIM1_UP_IRQHandler(void)
 }
 
 /**
-  * @brief This function handles UART8 global interrupt.
+  * @brief This function handles USART6 global interrupt.
   */
-void UART8_IRQHandler(void)
+void USART6_IRQHandler(void)
 {
-  /* USER CODE BEGIN UART8_IRQn 0 */
-  cpp_UART8_IRQHandler();
-  /* USER CODE END UART8_IRQn 0 */
-  /* USER CODE BEGIN UART8_IRQn 1 */
+  /* USER CODE BEGIN USART6_IRQn 0 */
+	cpp_UART6_IRQHandler();
+  /* USER CODE END USART6_IRQn 0 */
+  /* USER CODE BEGIN USART6_IRQn 1 */
 
-  /* USER CODE END UART8_IRQn 1 */
+  /* USER CODE END USART6_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
