@@ -1,0 +1,8 @@
+C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Task.hpp:29:10:void Task::SendCommandReference(Command&)	16	static
+../Cube++/CubeTask.hpp:32:22:static CubeTask& CubeTask::Inst()	8	static
+../Cube++/CubeTask.hpp:47:5:CubeTask::CubeTask()	16	static
+../Cube++/CubeDefines.cpp:26:6:)	224	static
+../Cube++/CubeDefines.cpp:69:6:)	364	static
+../Cube++/CubeDefines.cpp:126:1:void __static_initialization_and_destruction_0(int, int)	16	static
+../Cube++/CubeDefines.cpp:126:1:cpp)	8	static
+../Cube++/CubeDefines.cpp:126:1:cpp)	8	static

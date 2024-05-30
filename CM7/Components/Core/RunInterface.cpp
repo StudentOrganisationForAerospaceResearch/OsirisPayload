@@ -14,9 +14,9 @@ extern "C" {
         run_main();
     }
 
-    void cpp_USART2_IRQHandler()
+    void cpp_USART8_IRQHandler()
     {
-        Driver::uart2.HandleIRQ_UART();
+        Driver::uart8.HandleIRQ_UART();
     }
 }
 

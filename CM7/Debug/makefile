@@ -16,6 +16,7 @@ RM := rm -rf
 -include Cube++/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
+-include Components/Debug/subdir.mk
 -include Components/Core/subdir.mk
 -include Components/subdir.mk
 -include Common/Src/subdir.mk
