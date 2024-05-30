@@ -1,4 +1,4 @@
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/CubeDefines.hpp:65:17:uint8_t* cube_malloc(uint32_t)	24	static
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/CubeDefines.hpp:89:14:void* operator new(size_t)	16	static
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/CubeDefines.hpp:65:17:uint8_t* cube_malloc(uint32_t)	24	static
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/CubeDefines.hpp:89:14:void* operator new(size_t)	16	static
 ../Cube++/Core/Task.cpp:12:1:Task::Task()	24	static
 ../Cube++/Core/Task.cpp:22:1:Task::Task(uint16_t)	24	static

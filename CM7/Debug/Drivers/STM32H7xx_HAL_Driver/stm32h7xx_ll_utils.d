@@ -1,5 +1,5 @@
 Drivers/STM32H7xx_HAL_Driver/stm32h7xx_ll_utils.o: \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_utils.c \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_utils.c \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_utils.h \
  ../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h \
  ../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h747xx.h \
@@ -22,6 +22,8 @@ Drivers/STM32H7xx_HAL_Driver/stm32h7xx_ll_utils.o: \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_mdma.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_exti.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_cortex.h \
+ ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_crc.h \
+ ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_crc_ex.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash_ex.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_hsem.h \
@@ -62,6 +64,8 @@ Drivers/STM32H7xx_HAL_Driver/stm32h7xx_ll_utils.o: \
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_mdma.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_exti.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_cortex.h:
+../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_crc.h:
+../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_crc_ex.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash_ex.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_hsem.h:

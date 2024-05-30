@@ -1,6 +1,6 @@
 Middlewares/Third_Party/FreeRTOS/cmsis_os.o: \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  ../Core/Inc/FreeRTOSConfig.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
@@ -18,7 +18,7 @@ Middlewares/Third_Party/FreeRTOS/cmsis_os.o: \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
  ../../Drivers/CMSIS/Include/cmsis_gcc.h
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h:
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:

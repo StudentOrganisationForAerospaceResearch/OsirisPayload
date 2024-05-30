@@ -1,5 +1,5 @@
 Cube++/Core/Queue.o: ../Cube++/Core/Queue.cpp \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Command.hpp \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Command.hpp \
  ../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  ../Core/Inc/FreeRTOSConfig.h \
@@ -17,9 +17,9 @@ Cube++/Core/Queue.o: ../Cube++/Core/Queue.cpp \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Components/SystemDefines.hpp \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Components/main_system.hpp \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Mutex.hpp \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Components/SystemDefines.hpp \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Components/main_system.hpp \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Mutex.hpp \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../Core/Inc/stm32h7xx_hal_conf.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \
@@ -41,6 +41,8 @@ Cube++/Core/Queue.o: ../Cube++/Core/Queue.cpp \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_mdma.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_exti.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_cortex.h \
+ ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_crc.h \
+ ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_crc_ex.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash_ex.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_hsem.h \
@@ -55,13 +57,16 @@ Cube++/Core/Queue.o: ../Cube++/Core/Queue.cpp \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Drivers/Inc/UARTDriver.hpp \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/CubeDefines.hpp \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/CubeUtils.hpp \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Queue.hpp \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Command.hpp \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/CubeUtils.hpp
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Command.hpp:
+ ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usart.h \
+ ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_dma.h \
+ ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_dmamux.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Drivers/Inc/UARTDriver.hpp \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/CubeDefines.hpp \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Core/Inc/CubeUtils.hpp \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Queue.hpp \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Command.hpp \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Core/Inc/CubeUtils.hpp
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Command.hpp:
 ../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h:
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
@@ -79,9 +84,9 @@ C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Command
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h:
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Components/SystemDefines.hpp:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Components/main_system.hpp:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Mutex.hpp:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Components/SystemDefines.hpp:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Components/main_system.hpp:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Mutex.hpp:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
 ../Core/Inc/stm32h7xx_hal_conf.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h:
@@ -103,6 +108,8 @@ C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Mutex.h
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_mdma.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_exti.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_cortex.h:
+../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_crc.h:
+../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_crc_ex.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash_ex.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_hsem.h:
@@ -117,9 +124,12 @@ C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Mutex.h
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Drivers/Inc/UARTDriver.hpp:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/CubeDefines.hpp:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/CubeUtils.hpp:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Queue.hpp:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Command.hpp:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/CubeUtils.hpp:
+../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usart.h:
+../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_dma.h:
+../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_dmamux.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Drivers/Inc/UARTDriver.hpp:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/CubeDefines.hpp:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Core/Inc/CubeUtils.hpp:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Queue.hpp:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Command.hpp:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Core/Inc/CubeUtils.hpp:

@@ -92,8 +92,8 @@ all: main-build
 main-build: Payload_CM7.elf secondary-outputs
 
 # Tool invocations
-Payload_CM7.elf Payload_CM7.map: $(OBJS) $(USER_OBJS) C:\Users\shiva\Documents\SOAR2\Payload\OsirisPayload\CM7\STM32H747IGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "Payload_CM7.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\shiva\Documents\SOAR2\Payload\OsirisPayload\CM7\STM32H747IGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Payload_CM7.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Payload_CM7.elf Payload_CM7.map: $(OBJS) $(USER_OBJS) /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/STM32H747IGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "Payload_CM7.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/STM32H747IGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Payload_CM7.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

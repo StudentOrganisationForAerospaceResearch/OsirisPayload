@@ -179,7 +179,7 @@ void TIM1_UP_IRQHandler(void)
 void UART8_IRQHandler(void)
 {
   /* USER CODE BEGIN UART8_IRQn 0 */
-
+  cpp_UART8_IRQHandler();
   /* USER CODE END UART8_IRQn 0 */
   /* USER CODE BEGIN UART8_IRQn 1 */
 

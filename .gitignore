@@ -53,8 +53,8 @@ STM32L152-Discovery.elf.launch
 [Rr]elease
 [Dd]ebug
 *.launch
-CM7/Debug
-CM7/Release
+CM7/Debug/
+CM7/Release/
 
 # VS2022
 .vs/

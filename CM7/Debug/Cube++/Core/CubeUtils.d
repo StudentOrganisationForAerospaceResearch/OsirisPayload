@@ -16,52 +16,52 @@ Cube++/Core/CubeUtils.o: ../Cube++/Core/CubeUtils.cpp \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/CubeUtils.hpp \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/crc16_xmodem.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/platform.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/file_error_numbers.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl_profile.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_compiler_version.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_compiler.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_compiler_language_support.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_development_os.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_builtin_support.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/choose_namespace.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/crc_implementation.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../platform.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../frame_check_sequence.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../platform.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../static_assert.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../type_traits.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../nullptr.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../binary.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../integral_limits.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../private/minmax_push.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../private/minmax_pop.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../limits.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/char_traits.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/algorithm.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/functional.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/type_traits.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/iterator.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/utility.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/minmax_push.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/minmax_pop.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../log.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../power.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../smallest.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../exception.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../error_handler.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../function.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../iterator.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../static_assert.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../binary.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../type_traits.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/crc_parameters.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../integral_limits.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Components/SystemDefines.hpp \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Components/main_system.hpp \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Mutex.hpp \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Core/Inc/CubeUtils.hpp \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/crc16_xmodem.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/platform.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/file_error_numbers.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl_profile.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_compiler_version.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_compiler.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_compiler_language_support.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_development_os.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_builtin_support.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/choose_namespace.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/crc_implementation.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../platform.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../frame_check_sequence.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../platform.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../static_assert.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../type_traits.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../nullptr.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../binary.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../integral_limits.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../private/minmax_push.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../private/minmax_pop.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../limits.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/char_traits.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/algorithm.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/functional.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/type_traits.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/iterator.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/utility.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/minmax_push.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/minmax_pop.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../log.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../power.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../smallest.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../exception.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../error_handler.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../function.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../iterator.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../static_assert.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../binary.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../type_traits.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/crc_parameters.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../integral_limits.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Components/SystemDefines.hpp \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Components/main_system.hpp \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Mutex.hpp \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../Core/Inc/stm32h7xx_hal_conf.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \
@@ -83,6 +83,8 @@ Cube++/Core/CubeUtils.o: ../Cube++/Core/CubeUtils.cpp \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_mdma.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_exti.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_cortex.h \
+ ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_crc.h \
+ ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_crc_ex.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash_ex.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_hsem.h \
@@ -97,8 +99,11 @@ Cube++/Core/CubeUtils.o: ../Cube++/Core/CubeUtils.cpp \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Drivers/Inc/UARTDriver.hpp \
- C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/CubeDefines.hpp
+ ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usart.h \
+ ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_dma.h \
+ ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_dmamux.h \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Drivers/Inc/UARTDriver.hpp \
+ /Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/CubeDefines.hpp
 ../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h:
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
@@ -116,52 +121,52 @@ Cube++/Core/CubeUtils.o: ../Cube++/Core/CubeUtils.cpp \
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h:
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/CubeUtils.hpp:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/crc16_xmodem.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/platform.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/file_error_numbers.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl_profile.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_compiler_version.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_compiler.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_compiler_language_support.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_development_os.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_builtin_support.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/choose_namespace.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/crc_implementation.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../platform.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../frame_check_sequence.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../platform.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../static_assert.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../type_traits.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../nullptr.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../binary.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../integral_limits.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../private/minmax_push.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../private/minmax_pop.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../limits.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/char_traits.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/algorithm.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/functional.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/type_traits.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/iterator.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/utility.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/minmax_push.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/minmax_pop.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../log.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../power.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../smallest.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../exception.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../error_handler.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../function.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../iterator.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../static_assert.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../binary.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../type_traits.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/crc_parameters.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../integral_limits.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Components/SystemDefines.hpp:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Components/main_system.hpp:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Mutex.hpp:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Core/Inc/CubeUtils.hpp:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/crc16_xmodem.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/platform.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/file_error_numbers.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl_profile.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_compiler_version.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_compiler.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_compiler_language_support.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_development_os.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/profiles/determine_builtin_support.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/choose_namespace.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/crc_implementation.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../platform.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../frame_check_sequence.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../platform.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../static_assert.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../type_traits.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../nullptr.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../binary.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../integral_limits.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../private/minmax_push.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../private/minmax_pop.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../limits.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/char_traits.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/algorithm.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/functional.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/type_traits.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/iterator.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/utility.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/minmax_push.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/minmax_pop.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../log.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../power.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../smallest.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../exception.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../error_handler.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../function.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../iterator.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../static_assert.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../binary.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../type_traits.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/crc_parameters.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Libraries/embedded-template-library/include/etl/private/../integral_limits.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Components/SystemDefines.hpp:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Components/main_system.hpp:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Mutex.hpp:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
 ../Core/Inc/stm32h7xx_hal_conf.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h:
@@ -183,6 +188,8 @@ C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Mutex.h
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_mdma.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_exti.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_cortex.h:
+../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_crc.h:
+../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_crc_ex.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash_ex.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_hsem.h:
@@ -197,5 +204,8 @@ C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Mutex.h
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Drivers/Inc/UARTDriver.hpp:
-C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/CubeDefines.hpp:
+../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usart.h:
+../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_dma.h:
+../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_dmamux.h:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/Drivers/Inc/UARTDriver.hpp:
+/Users/cjchan/Desktop/SOAR/Payload/OsirisPayload/CM7/Cube++/CubeDefines.hpp:

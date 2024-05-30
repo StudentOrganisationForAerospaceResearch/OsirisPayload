@@ -8,6 +8,6 @@
 
 void run_interface();
 
-void cpp_USART8_IRQHandler();
+void cpp_UART8_IRQHandler();
 
 #endif /* C__IFACE_HPP_ */

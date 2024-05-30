@@ -12,6 +12,9 @@
 #include "Mutex.hpp"
 // Board specific includes
 #include "stm32h7xx_hal.h"
+#include "stm32h7xx_ll_usart.h"
+#include "stm32h7xx_hal_rcc.h"
+#include "stm32h7xx_ll_dma.h"
 
 
 
@@ -30,14 +33,19 @@ void run_StartDefaultTask();
 // UART Driver
 class UARTDriver;
 namespace Driver {
-    extern UARTDriver uart2;
+    extern UARTDriver uart8;
 }
 namespace UART {
-    constexpr UARTDriver* Debug = &Driver::uart2;
+    constexpr UARTDriver* Debug = &Driver::uart8;
 }
 
 
 /* System Handles ------------------------------------------------------------------*/
+extern CRC_HandleTypeDef hcrc;       // CRC - Hardware CRC System Handle
+
+namespace SystemHandles {
+    constexpr CRC_HandleTypeDef* CRC_Handle = &hcrc;
+}
 
 
 
