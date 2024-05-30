@@ -1,0 +1,9 @@
+C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Command.hpp:47:14:uint8_t* Command::GetDataPointer() const	16	static
+C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Command.hpp:48:21:GLOBAL_COMMANDS Command::GetCommand() const	16	static
+C:/Users/shiva/Documents/SOAR2/Payload/OsirisPayload/CM7/Cube++/Core/Inc/Command.hpp:49:14:uint16_t Command::GetTaskCommand() const	16	static
+../Cube++/CubeTask.hpp:32:22:static CubeTask& CubeTask::Inst()	8	static
+../Cube++/CubeTask.hpp:40:17:static void CubeTask::RunTask(void*)	16	static
+../Cube++/CubeTask.hpp:47:5:CubeTask::CubeTask()	16	static
+../Cube++/CubeTask.cpp:14:6:void CubeTask::InitTask()	32	static
+../Cube++/CubeTask.cpp:36:6:void CubeTask::Run(void*)	32	static
+../Cube++/CubeTask.cpp:55:6:void CubeTask::HandleCommand(Command&)	24	static

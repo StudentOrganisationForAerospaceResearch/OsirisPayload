@@ -99,7 +99,7 @@ void StartDefaultTask(void const * argument);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+#include "RunInterface.hpp"
 /* USER CODE END 0 */
 
 /**
@@ -178,7 +178,8 @@ Error_Handler();
   MX_UART7_Init();
   MX_UART8_Init();
   /* USER CODE BEGIN 2 */
-
+  run_interface();
+  #if 0
   /* USER CODE END 2 */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -219,6 +220,7 @@ Error_Handler();
 
     /* USER CODE BEGIN 3 */
   }
+#endif
   /* USER CODE END 3 */
 }
 
@@ -658,6 +660,10 @@ static void MX_UART8_Init(void)
   GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
   GPIO_InitStruct.Alternate = LL_GPIO_AF_8;
   LL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+
+  /* UART8 interrupt Init */
+  NVIC_SetPriority(UART8_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),5, 0));
+  NVIC_EnableIRQ(UART8_IRQn);
 
   /* USER CODE BEGIN UART8_Init 1 */
 

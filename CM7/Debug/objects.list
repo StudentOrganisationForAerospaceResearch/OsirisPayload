@@ -1,5 +1,6 @@
 "./Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.o"
 "./Components/Core/RunInterface.o"
+"./Components/Debug/DebugTask.o"
 "./Components/main_system.o"
 "./Core/Src/freertos.o"
 "./Core/Src/main.o"

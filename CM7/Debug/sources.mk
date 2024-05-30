@@ -40,6 +40,7 @@ CPP_DEPS :=
 SUBDIRS := \
 Common/Src \
 Components/Core \
+Components/Debug \
 Components \
 Core/Src \
 Core/Startup \

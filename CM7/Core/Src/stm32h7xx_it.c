@@ -173,6 +173,19 @@ void TIM1_UP_IRQHandler(void)
   /* USER CODE END TIM1_UP_IRQn 1 */
 }
 
+/**
+  * @brief This function handles UART8 global interrupt.
+  */
+void UART8_IRQHandler(void)
+{
+  /* USER CODE BEGIN UART8_IRQn 0 */
+
+  /* USER CODE END UART8_IRQn 0 */
+  /* USER CODE BEGIN UART8_IRQn 1 */
+
+  /* USER CODE END UART8_IRQn 1 */
+}
+
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */
