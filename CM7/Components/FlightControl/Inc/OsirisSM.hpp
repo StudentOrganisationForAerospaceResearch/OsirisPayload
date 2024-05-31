@@ -85,9 +85,8 @@ public:
 
     static const char* StateToString(OsirisState stateId);
 
-    //OsirisState HandleGeneralStateCommands(OsirisControlCommands rcAction);
 protected:
-    OsirisState rsStateID = RS_NONE;    //The name of the state we're in
+    OsirisState rsStateID = OS_NONE;    //The name of the state we're in
 
 };
 
@@ -105,8 +104,8 @@ protected:
     OsirisState TransitionState(OsirisState nextState);
 
     // Variables
-    BaseOsirisState* stateArray[RS_NONE];
-    BaseOsirisState* rs_currentState;
+    BaseOsirisState* stateArray[OS_NONE];
+    BaseOsirisState* os_currentState;
 };
 
 
@@ -124,6 +123,9 @@ class PreLaunch : public BaseOsirisState
 		OsirisState HandleCommand(Command& cm) override;
 		OsirisState OnEnter() override;
 		OsirisState OnExit() override;
+
+		static OsirisState HandleControlSOLS12(OsirisControlCommands ocAction, OsirisState currentState);
+		static OsirisState HandleControlSOL3Compressor(OsirisControlCommands ocAction, OsirisState currentState);
 
 	private:
 
@@ -205,4 +207,4 @@ class PostLaunch : public BaseOsirisState
 };
 
 
-#endif // SOAR_AVIONICS_ROCKET_SM
+#endif // SOAR_PAYLOAD_OSIRIS_SM

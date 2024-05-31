@@ -9,8 +9,8 @@
  *
  ******************************************************************************
 */
-#ifndef AVIONICS_INCLUDE_SOAR_CORE_GPIO_H
-#define AVIONICS_INCLUDE_SOAR_CORE_GPIO_H
+#ifndef PAYLOAD_INCLUDE_SOAR_CORE_GPIO_H
+#define PAYLOAD_INCLUDE_SOAR_CORE_GPIO_H
 #include "SystemDefines.hpp"
 #include "main.h"
 #include "stm32h7xx_hal.h"
@@ -20,4 +20,4 @@ namespace GPIO
 
 }
 
-#endif /* AVIONICS_INCLUDE_SOAR_CORE_GPIO_H */
+#endif /* PAYLOAD_INCLUDE_SOAR_CORE_GPIO_H */

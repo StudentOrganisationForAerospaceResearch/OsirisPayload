@@ -15,7 +15,26 @@
  */
 OsirisSM::OsirisSM(OsirisState startingState, bool enterStartingState)
 {
+	// Setup of internal state array
+	stateArray[OS_PRELAUNCH] = new PreLaunch();
+	stateArray[OS_LAUNCH] = new Launch();
+	stateArray[OS_DROGUE] = new Drogue();
+	stateArray[OS_MAIN] = new Main();
+	stateArray[OS_POSTLAUNCH] = new PostLaunch();
 
+	// Verify that all states are initialized correctly
+	for(uint8_t i = 0; i < OS_NONE; i++) {
+		SOAR_ASSERT( stateArray[i] != nullptr );
+		SOAR_ASSERT( stateArray[i]->GetStateID() == i );
+	}
+
+	os_currentState = stateArray[startingState];
+
+	if (enterStartingState) {
+		os_currentState->OnEnter();
+	}
+
+	SOAR_PRINT("OSIRIS State Machine Started in [ %s ] state\n", BaseOsirisState::StateToString(os_currentState->GetStateID()));
 }
 
 /**
@@ -25,7 +44,9 @@ OsirisSM::OsirisSM(OsirisState startingState, bool enterStartingState)
  */
 OsirisState OsirisSM::TransitionState(OsirisState nextState)
 {
-
+	if( nextState == os_currentState->GetStateID()) {
+		return os_currentState->GetStateID();
+	}
 }
 
 /**
@@ -34,40 +55,18 @@ OsirisState OsirisSM::TransitionState(OsirisState nextState)
  */
 void OsirisSM::HandleCommand(Command& cm)
 {
-    SOAR_ASSERT(rs_currentState != nullptr, "Command received before state machine initialized");
+    SOAR_ASSERT(os_currentState != nullptr, "Command received before state machine initialized");
 
     // Handle the command based on the current state
-    OsirisState nextOsirisState = rs_currentState->HandleCommand(cm);
+    OsirisState nextOsirisState = os_currentState->HandleCommand(cm);
 
     // Run transition state - if the next state is the current state this does nothing
-    if (nextOsirisState != rs_currentState->GetStateID())
+    if (nextOsirisState != os_currentState->GetStateID())
     {
 
         TransitionState(nextOsirisState);
     }
 }
-
-/* Base State ------------------------------------------------------------------*/
-///**
-// * @brief General handler for actions that should be supported by all rocket state machines
-// */
-//OsirisState BaseOsirisState::HandleGeneralStateCommands(RocketControlCommands rcAction)
-//{
-//    switch (rcAction) {
-//    case RSC_PAUSE_LOGGING:
-//        //TODO: Send pause logging command
-//        break;
-//    case RSC_START_LOGGING:
-//        //TODO: Send start logging command
-//        break;
-//    default:
-//        break;
-//    }
-//
-//    return GetStateID();
-//}
-
-
 
 
 /**
