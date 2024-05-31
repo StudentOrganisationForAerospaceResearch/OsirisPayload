@@ -11,7 +11,11 @@
 #include "CubeUtils.hpp"
 #include <cstring>
 
+#include "stm32h7xx_hal.h"
+
 // External Tasks (to send debug commands to)
+#include "FlightTask.hpp"
+#include "GPIO.hpp"
 
 /* Macros --------------------------------------------------------------------*/
 
@@ -41,7 +45,7 @@ DebugTask::DebugTask() : Task(TASK_DEBUG_QUEUE_DEPTH_OBJS), kUart_(UART::Debug)
 void DebugTask::InitTask()
 {
     // Make sure the task is not already initialized
-    CUBE_ASSERT(rtTaskHandle == nullptr, "Cannot initialize Debug task twice");
+    SOAR_ASSERT(rtTaskHandle == nullptr, "Cannot initialize Debug task twice");
 
     // Start the task
     BaseType_t rtValue =
@@ -53,7 +57,7 @@ void DebugTask::InitTask()
             (TaskHandle_t*)&rtTaskHandle);
 
     // Ensure creation succeded
-    CUBE_ASSERT(rtValue == pdPASS, "DebugTask::InitTask - xTaskCreate() failed");
+    SOAR_ASSERT(rtValue == pdPASS, "DebugTask::InitTask - xTaskCreate() failed");
 }
 
 // TODO: Only run thread when appropriate GPIO pin pulled HIGH (or by define)
@@ -87,35 +91,42 @@ void DebugTask::Run(void * pvParams)
 void DebugTask::HandleDebugMessage(const char* msg)
 {
     //-- PARAMETRIZED COMMANDS -- (Must be first)
-    if (strncmp(msg, "echo ", 5) == 0) {
+	if (strncmp(msg, "rsc ", 4) == 0) {
+		// Get parameter and send as a control action to flight task
+		int32_t state = ExtractIntParameter(msg, 4);
+		if (state != ERRVAL && state > 0 && state < UINT16_MAX) {
+			FlightTask::Inst().SendCommand(Command(CONTROL_ACTION, state));
+		}
+	}
+	else if (strncmp(msg, "echo ", 5) == 0) {
         // Echo the message (without the 'echo')
-        CUBE_PRINT("\n%s", &msg[5]);
+        SOAR_PRINT("\n%s", &msg[5]);
     }
     else if (strncmp(msg, "iecho ", 6) == 0) {
         // Int echo the message (echo an int parameter)
         int32_t val = Utils::ExtractIntParameter(msg, 6);
         if (val != ERRVAL && val > 0 && val < UINT16_MAX) {
-            CUBE_PRINT("\n%d", val);
+            SOAR_PRINT("\n%d", val);
         }
     }
 
     //-- SYSTEM / CHAR COMMANDS -- (Must be last)
     else if (strcmp(msg, "sysreset") == 0) {
         // Reset the system
-        CUBE_ASSERT(false, "System reset requested");
+        SOAR_ASSERT(false, "System reset requested");
     }
     else if (strcmp(msg, "sysinfo") == 0) {
         // Print message
-        CUBE_PRINT("\n\n-- CUBE SYSTEM --\n");
-        CUBE_PRINT("Current System Free Heap: %d Bytes\n", xPortGetFreeHeapSize());
-        CUBE_PRINT("Lowest Ever Free Heap: %d Bytes\n", xPortGetMinimumEverFreeHeapSize());
-        CUBE_PRINT("Debug Task Runtime  \t: %d ms\n\n", TICKS_TO_MS(xTaskGetTickCount()));
+        SOAR_PRINT("\n\n-- CUBE SYSTEM --\n");
+        SOAR_PRINT("Current System Free Heap: %d Bytes\n", xPortGetFreeHeapSize());
+        SOAR_PRINT("Lowest Ever Free Heap: %d Bytes\n", xPortGetMinimumEverFreeHeapSize());
+        SOAR_PRINT("Debug Task Runtime  \t: %d ms\n\n", TICKS_TO_MS(xTaskGetTickCount()));
     }
     else {
         // Single character command, or unknown command
         switch (msg[0]) {
         default:
-            CUBE_PRINT("Debug, unknown command: %s\n", msg);
+            SOAR_PRINT("Debug, unknown command: %s\n", msg);
             break;
         }
     }
@@ -164,4 +175,28 @@ void DebugTask::InterruptRxData(uint8_t errors)
 
     //Re-arm the interrupt
     ReceiveData();
+}
+
+/* Helper Functions --------------------------------------------------------------*/
+/**
+ * @brief Extracts an integer parameter from a string
+ * @brief msg Message to extract from, MUST be at least identifierLen long, and properly null terminated
+ * @brief identifierLen Length of the identifier eg. 'rsc ' (Including the space) is 4
+ * @return ERRVAL on failure, otherwise the extracted value
+ */
+int32_t DebugTask::ExtractIntParameter(const char* msg, uint16_t identifierLen)
+{
+    // Handle a command with an int parameter at the end
+    if (static_cast<uint16_t>(strlen(msg)) < identifierLen+1) {
+        SOAR_PRINT("Int parameter command insufficient length\r\n");
+        return ERRVAL;
+    }
+
+    // Extract the value and attempt conversion to integer
+    const int32_t val = Utils::StringToLong(&msg[identifierLen]);
+    if (val == ERRVAL) {
+        SOAR_PRINT("Int parameter command invalid value\r\n");
+    }
+
+    return val;
 }
