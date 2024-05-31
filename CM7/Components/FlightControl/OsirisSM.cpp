@@ -13,7 +13,7 @@
 /**
  * @brief Default constructor for Rocket SM, initializes all states
  */
-OsirisSM::OsirisSM(RocketState startingState, bool enterStartingState)
+OsirisSM::OsirisSM(OsirisState startingState, bool enterStartingState)
 {
 
 }
@@ -23,7 +23,7 @@ OsirisSM::OsirisSM(RocketState startingState, bool enterStartingState)
  * @param nextState The next state to transition to
  * @return The state after the transition
  */
-RocketState OsirisSM::TransitionState(RocketState nextState)
+OsirisState OsirisSM::TransitionState(OsirisState nextState)
 {
 
 }
@@ -37,13 +37,13 @@ void OsirisSM::HandleCommand(Command& cm)
     SOAR_ASSERT(rs_currentState != nullptr, "Command received before state machine initialized");
 
     // Handle the command based on the current state
-    RocketState nextRocketState = rs_currentState->HandleCommand(cm);
+    OsirisState nextOsirisState = rs_currentState->HandleCommand(cm);
 
     // Run transition state - if the next state is the current state this does nothing
-    if (nextRocketState != rs_currentState->GetStateID())
+    if (nextOsirisState != rs_currentState->GetStateID())
     {
 
-        TransitionState(nextRocketState);
+        TransitionState(nextOsirisState);
     }
 }
 
@@ -51,7 +51,7 @@ void OsirisSM::HandleCommand(Command& cm)
 ///**
 // * @brief General handler for actions that should be supported by all rocket state machines
 // */
-//RocketState BaseRocketState::HandleGeneralStateCommands(RocketControlCommands rcAction)
+//OsirisState BaseOsirisState::HandleGeneralStateCommands(RocketControlCommands rcAction)
 //{
 //    switch (rcAction) {
 //    case RSC_PAUSE_LOGGING:
@@ -73,7 +73,7 @@ void OsirisSM::HandleCommand(Command& cm)
 /**
  * @brief Returns a string for the state
  */
-const char* BaseRocketState::StateToString(RocketState stateId)
+const char* BaseOsirisState::StateToString(OsirisState stateId)
 {
     switch(stateId) {
 

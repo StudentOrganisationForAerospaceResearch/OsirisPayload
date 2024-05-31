@@ -1,7 +1,7 @@
 /**
  ******************************************************************************
  * File Name          : OsirisSM.hpp
- * Description        : Rocket state machine, handles all rocket state transitions.
+ * Description        : Osiris state machine, handles all osiris state transitions.
  ******************************************************************************
 */
 #ifndef SOAR_PAYLOAD_OSIRIS_SM
@@ -9,66 +9,200 @@
 
 #include "Command.hpp"
 
-enum RocketState
+enum OsirisState
 {
-	RS_ABORT = 0,
-	RS_NONE
+	// -- ON GROUND --
+	OS_PRELAUNCH = 0, // All operations allowed in this state. Used for testing on ground
+
+	// -- TRANSITION ON LAUNCH DETECTION --
+	OS_LAUNCH, // Normal rocket flight, do nothing
+
+	// -- TRANSITION ON DROGUE DEPLOYMENT --
+	OS_DROGUE, // Opening SOLS 1 - 3
+
+	// -- TRANSITION ON MAIN DEPLOYMENT --
+	OS_MAIN, // SOL 3 Open
+
+	// -- TRANSITION AT 150 FT AGL --
+	OS_POSTLAUNCH, // All SOLS closed, do nothing
+
+	// -- INVALID STATE --
+	OS_NONE
 
 };
 
 /**
- * @brief External Rocket Control Commands, all fall under GLOBAL_COMMAND -> CONTROL_ACTION umbrella
+ * @brief External Osiris Control Commands, all fall under GLOBAL_COMMAND -> CONTROL_ACTION umbrella
  *
  *        State specific commands, must be all in-order to avoid duplicate command IDs
  */
-enum RocketControlCommands
+enum OsirisControlCommands
 {
-    RSC_FIRST_INVALID = 0,
+    OSC_FIRST_INVALID = 0,
 
+	OSC_ANY_TO_PRELAUNCH,
 
+	// -- PRELAUNCH --
+	OSC_PRELAUNCH_TO_LAUNCH,
 
-    //-- TECHNICAL --
-    RSC_NONE   // Invalid command, must be last
+	// -- LAUNCH --
+	OSC_LAUNCH_TO_DROGUE,
+
+	// -- DROGUE --
+	OSC_DROGUE_TO_MAIN,
+
+	// -- MAIN --
+	OSC_MAIN_TO_POSTLAUNCH,
+
+	// -- POSTLAUNCH --
+	// No unique commands. Use OSC_ANY_TO_PRELAUNCH to cycle states again
+
+	// -- CONTROL COMMANDS --
+	OSC_OPEN_SOL1,
+	OSC_CLOSE_SOL1,
+	OSC_OPEN_SOL2,
+	OSC_CLOSE_SOL2,
+	OSC_OPEN_SOL3,
+	OSC_CLOSE_SOL3,
+	OSC_COMPRESSOR_ON,
+	OSC_COMPRESSOR_OFF,
+
+    // -- TECHNICAL --
+    OSC_NONE   // Invalid command, must be last
 };
 
 /**
- * @brief Base class for Rocket State Machine
+ * @brief Base class for Osiris State Machine
  */
-class BaseRocketState
+class BaseOsirisState
 {
 public:
-    virtual RocketState HandleCommand(Command& cm) = 0; //Handle a command based on the current state
-    virtual RocketState OnEnter() = 0;  //Returns the state we're entering
-    virtual RocketState OnExit() = 0;   //Returns the state we're exiting
+    virtual OsirisState HandleCommand(Command& cm) = 0; //Handle a command based on the current state
+    virtual OsirisState OnEnter() = 0;  //Returns the state we're entering
+    virtual OsirisState OnExit() = 0;   //Returns the state we're exiting
 
-    virtual RocketState GetStateID() { return rsStateID; }
+    virtual OsirisState GetStateID() { return rsStateID; }
 
-    static const char* StateToString(RocketState stateId);
+    static const char* StateToString(OsirisState stateId);
 
-    //RocketState HandleGeneralStateCommands(RocketControlCommands rcAction);
+    //OsirisState HandleGeneralStateCommands(OsirisControlCommands rcAction);
 protected:
-    RocketState rsStateID = RS_NONE;    //The name of the state we're in
+    OsirisState rsStateID = RS_NONE;    //The name of the state we're in
 
 };
 
 /**
- * @brief Rocket State Machine
+ * @brief Osiris State Machine
  */
 class OsirisSM
 {
 public:
-    OsirisSM(RocketState startingState, bool enterStartingState);
+    OsirisSM(OsirisState startingState, bool enterStartingState);
 
     void HandleCommand(Command& cm);
 
 protected:
-    RocketState TransitionState(RocketState nextState);
+    OsirisState TransitionState(OsirisState nextState);
 
     // Variables
-    BaseRocketState* stateArray[RS_NONE];
-    BaseRocketState* rs_currentState;
+    BaseOsirisState* stateArray[RS_NONE];
+    BaseOsirisState* rs_currentState;
 };
 
+
+/**
+ * @brief PreLaunch State
+ * 		-> Allows full control
+ * 		-> Used for testing and standby on the ground
+ */
+class PreLaunch : public BaseOsirisState
+{
+	public:
+		PreLaunch();
+
+		// Base Class functions
+		OsirisState HandleCommand(Command& cm) override;
+		OsirisState OnEnter() override;
+		OsirisState OnExit() override;
+
+	private:
+
+};
+
+/**
+ * @brief Launch State
+ * 		-> Normal rocket flight
+ * 		-> Do nothing
+ */
+class Launch : public BaseOsirisState
+{
+	public:
+		Launch();
+
+		// Base Class functions
+		OsirisState HandleCommand(Command& cm) override;
+		OsirisState OnEnter() override;
+		OsirisState OnExit() override;
+
+	private:
+
+};
+
+/**
+ * @brief Drogue State
+ * 		-> Opening SOLS 1 - 3 at different heights
+ */
+class Drogue : public BaseOsirisState
+{
+	public:
+		Drogue();
+
+		// Base Class functions
+		OsirisState HandleCommand(Command& cm) override;
+		OsirisState OnEnter() override;
+		OsirisState OnExit() override;
+
+	private:
+
+};
+
+/**
+ * @brief Main State
+ * 		-> SOL3 Open
+ * 		-> SOL3 Open close 150ft before and after main state
+ */
+class Main : public BaseOsirisState
+{
+	public:
+		Main();
+
+		// Base Class functions
+		OsirisState HandleCommand(Command& cm) override;
+		OsirisState OnEnter() override;
+		OsirisState OnExit() override;
+
+	private:
+
+};
+
+/**
+ * @brief PostLaunch State
+ * 		-> All SOLS closed
+ * 		-> Do nothing
+ */
+class PostLaunch : public BaseOsirisState
+{
+	public:
+		PostLaunch();
+
+		// Base Class functions
+		OsirisState HandleCommand(Command& cm) override;
+		OsirisState OnEnter() override;
+		OsirisState OnExit() override;
+
+	private:
+
+};
 
 
 #endif // SOAR_AVIONICS_ROCKET_SM

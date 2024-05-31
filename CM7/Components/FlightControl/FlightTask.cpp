@@ -43,7 +43,7 @@ void FlightTask::InitTask()
 void FlightTask::Run(void * pvParams)
 {
 
-	osm_ = new OsirisSM(RS_ABORT, true);
+	osm_ = new OsirisSM(OS_PRELAUNCH, true);
 
     while (1) {
 
