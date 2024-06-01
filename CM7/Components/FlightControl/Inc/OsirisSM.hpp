@@ -20,10 +20,10 @@ enum OsirisState
 	// -- TRANSITION ON DROGUE DEPLOYMENT --
 	OS_DROGUE, // Opening SOLS 1 - 3
 
-	// -- TRANSITION ON MAIN DEPLOYMENT --
+	// -- TRANSITION ON MAIN DEPLOYMENT (1800FT) --
 	OS_MAIN, // SOL 3 Open
 
-	// -- TRANSITION AT 150 FT AGL --
+	// -- TRANSITION AT 300 FT AGL --
 	OS_POSTLAUNCH, // All SOLS closed, do nothing
 
 	// -- INVALID STATE --
@@ -81,12 +81,12 @@ public:
     virtual OsirisState OnEnter() = 0;  //Returns the state we're entering
     virtual OsirisState OnExit() = 0;   //Returns the state we're exiting
 
-    virtual OsirisState GetStateID() { return rsStateID; }
+    virtual OsirisState GetStateID() { return osStateID; }
 
     static const char* StateToString(OsirisState stateId);
 
 protected:
-    OsirisState rsStateID = OS_NONE;    //The name of the state we're in
+    OsirisState osStateID = OS_NONE;    //The name of the state we're in
 
 };
 
@@ -126,9 +126,9 @@ class PreLaunch : public BaseOsirisState
 
 		static OsirisState HandleControlSOLS12(OsirisControlCommands ocAction, OsirisState currentState);
 		static OsirisState HandleControlSOL3Compressor(OsirisControlCommands ocAction, OsirisState currentState);
+		static void CloseAllPeripherals();
 
 	private:
-
 };
 
 /**
