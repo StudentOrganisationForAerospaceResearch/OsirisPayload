@@ -26,11 +26,43 @@ namespace GPIO
 	}
 
 	namespace LED_BLUE {
-			inline void On() { HAL_GPIO_WritePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin, GPIO_PIN_SET); }
-	        inline void Off() { HAL_GPIO_WritePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin, GPIO_PIN_RESET); }
-	        inline void Toggle() { HAL_GPIO_TogglePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin); }
+		inline void On() { HAL_GPIO_WritePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin, GPIO_PIN_SET); }
+		inline void Off() { HAL_GPIO_WritePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin, GPIO_PIN_RESET); }
+		inline void Toggle() { HAL_GPIO_TogglePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin); }
 
-	        inline bool IsOn() { return HAL_GPIO_ReadPin(LED_BLUE_GPIO_Port, LED_BLUE_Pin) == GPIO_PIN_SET; }
+		inline bool IsOn() { return HAL_GPIO_ReadPin(LED_BLUE_GPIO_Port, LED_BLUE_Pin) == GPIO_PIN_SET; }
+	}
+
+	namespace SOL1 {
+		inline void On() { HAL_GPIO_WritePin(SOL1_GPIO_Port, SOL1_Pin, GPIO_PIN_SET); }
+		inline void Off() { HAL_GPIO_WritePin(SOL1_GPIO_Port, SOL1_Pin, GPIO_PIN_RESET); }
+		inline void Toggle() { HAL_GPIO_TogglePin(SOL1_GPIO_Port, SOL1_Pin); }
+
+		inline bool IsOn() { return HAL_GPIO_ReadPin(SOL1_GPIO_Port, SOL1_Pin) == GPIO_PIN_SET; }
+	}
+
+	namespace SOL2 {
+		inline void On() { HAL_GPIO_WritePin(SOL2_GPIO_Port, SOL2_Pin, GPIO_PIN_SET); }
+		inline void Off() { HAL_GPIO_WritePin(SOL2_GPIO_Port, SOL2_Pin, GPIO_PIN_RESET); }
+		inline void Toggle() { HAL_GPIO_TogglePin(SOL2_GPIO_Port, SOL2_Pin); }
+
+		inline bool IsOn() { return HAL_GPIO_ReadPin(SOL2_GPIO_Port, SOL2_Pin) == GPIO_PIN_SET; }
+	}
+
+	namespace SOL3 {
+		inline void On() { HAL_GPIO_WritePin(SOL3_GPIO_Port, SOL3_Pin, GPIO_PIN_SET); }
+		inline void Off() { HAL_GPIO_WritePin(SOL3_GPIO_Port, SOL3_Pin, GPIO_PIN_RESET); }
+		inline void Toggle() { HAL_GPIO_TogglePin(SOL3_GPIO_Port, SOL3_Pin); }
+
+		inline bool IsOn() { return HAL_GPIO_ReadPin(SOL3_GPIO_Port, SOL3_Pin) == GPIO_PIN_SET; }
+	}
+
+	namespace COMPRESSOR {
+		inline void On() { HAL_GPIO_WritePin(COMPRESSOR_GPIO_Port, COMPRESSOR_Pin, GPIO_PIN_SET); }
+		inline void Off() { HAL_GPIO_WritePin(COMPRESSOR_GPIO_Port, COMPRESSOR_Pin, GPIO_PIN_RESET); }
+		inline void Toggle() { HAL_GPIO_TogglePin(COMPRESSOR_GPIO_Port, COMPRESSOR_Pin); }
+
+		inline bool IsOn() { return HAL_GPIO_ReadPin(COMPRESSOR_GPIO_Port, COMPRESSOR_Pin) == GPIO_PIN_SET; }
 	}
 }
 
