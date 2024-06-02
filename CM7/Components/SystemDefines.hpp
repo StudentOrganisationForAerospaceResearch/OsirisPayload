@@ -55,6 +55,9 @@ constexpr uint8_t FLIGHT_TASK_RTOS_PRIORITY = 2;            // Priority of the d
 constexpr uint8_t FLIGHT_TASK_QUEUE_DEPTH_OBJS = 10;        // Size of the debug task queue
 constexpr uint16_t FLIGHT_TASK_STACK_DEPTH_WORDS = 512;        // Size of the debug task stack
 
-
+// ALTIMETER TASK
+constexpr uint8_t ALTIMETER_TASK_RTOS_PRIORITY = 2;            // Priority of the debug task
+constexpr uint8_t ALTIMETER_TASK_QUEUE_DEPTH_OBJS = 10;        // Size of the debug task queue
+constexpr uint16_t ALTIMETER_TASK_STACK_DEPTH_WORDS = 512;        // Size of the debug task stack
 
 #endif // CUBE_MAIN_SYSTEM_DEFINES_H
