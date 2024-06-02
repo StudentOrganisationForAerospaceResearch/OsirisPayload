@@ -122,6 +122,23 @@ void DebugTask::HandleDebugMessage(const char* msg)
         SOAR_PRINT("Lowest Ever Free Heap: %d Bytes\n", xPortGetMinimumEverFreeHeapSize());
         SOAR_PRINT("Debug Task Runtime  \t: %d ms\n\n", TICKS_TO_MS(xTaskGetTickCount()));
     }
+    else if (strcmp(msg, "test act") == 0) {
+    	SOAR_PRINT("Testing...");
+    	GPIO::COMPRESSOR::On();
+    	osDelay(1500);
+    	GPIO::SOL1::On();
+    	osDelay(3000);
+    	GPIO::SOL1::Off();
+    	GPIO::SOL2::On();
+    	osDelay(3000);
+    	GPIO::SOL2::Off();
+    	GPIO::SOL3::On();
+    	osDelay(3000);
+    	GPIO::SOL3::Off();
+    	osDelay(1000);
+    	GPIO::COMPRESSOR::Off();
+    	SOAR_PRINT("done");
+    }
     else {
         // Single character command, or unknown command
         switch (msg[0]) {

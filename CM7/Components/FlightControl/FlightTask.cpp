@@ -34,6 +34,9 @@ void FlightTask::InitTask()
             (TaskHandle_t*)&rtTaskHandle);
 
     SOAR_ASSERT(rtValue == pdPASS, "FlightTask::InitTask() - xTaskCreate() failed");
+
+
+
 }
 
 /**

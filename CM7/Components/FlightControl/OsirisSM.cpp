@@ -107,6 +107,7 @@ PreLaunch::PreLaunch()
 OsirisState PreLaunch::OnEnter()
 {
 	PreLaunch::CloseAllPeripherals();
+	GPIO::LED_GREEN::On();
     return osStateID;
 }
 
@@ -125,19 +126,19 @@ OsirisState PreLaunch::OnExit()
 OsirisState PreLaunch::HandleControlSOLS12(OsirisControlCommands ocAction, OsirisState currentState) {
 	switch(ocAction) {
 		case OSC_OPEN_SOL1:
-			// TODO : Complete
+			GPIO::SOL1::On();
 			break;
 
 		case OSC_CLOSE_SOL1:
-			// TODO : Complete
+			GPIO::SOL1::Off();
 			break;
 
 		case OSC_OPEN_SOL2:
-			// TODO : Complete
+			GPIO::SOL2::On();
 			break;
 
 		case OSC_CLOSE_SOL2:
-			// TODO : Complete
+			GPIO::SOL2::Off();
 			break;
 
 		default:
@@ -152,19 +153,19 @@ OsirisState PreLaunch::HandleControlSOLS12(OsirisControlCommands ocAction, Osiri
 OsirisState PreLaunch::HandleControlSOL3Compressor(OsirisControlCommands ocAction, OsirisState currentState) {
 	switch(ocAction) {
 		case OSC_OPEN_SOL3:
-			// TODO : Complete
+			GPIO::SOL3::On();
 			break;
 
 		case OSC_CLOSE_SOL3:
-			// TODO : Complete
+			GPIO::SOL3::Off();
 			break;
 
 		case OSC_COMPRESSOR_ON:
-			// TODO : Complete
+			GPIO::COMPRESSOR::On();
 			break;
 
 		case OSC_COMPRESSOR_OFF:
-			// TODO : Complete
+			GPIO::COMPRESSOR::Off();
 			break;
 
 		default:
@@ -177,7 +178,10 @@ OsirisState PreLaunch::HandleControlSOL3Compressor(OsirisControlCommands ocActio
  * @brief Close all peripherals for safety or functionality
  */
 void PreLaunch::CloseAllPeripherals() {
-	// TODO : CLOSE SOLS AND COMPRESSOR
+	GPIO::SOL1::Off();
+	GPIO::SOL2::Off();
+	GPIO::SOL3::Off();
+	GPIO::COMPRESSOR::Off();
 }
 
 
