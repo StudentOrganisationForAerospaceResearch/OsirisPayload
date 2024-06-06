@@ -12,13 +12,23 @@
 #include "Task.hpp"
 #include "SystemDefines.hpp"
 #include "main_system.hpp"
+//#include "main.c"
 
 /* Macros --------------------------------------------------------------------*/
 
 #define IMUTASK_ODR 0b0110 //Page 50 of datasheet to refrence sample rates
 
 
+
+
+
 /* Enums -----------------------------------------------------------------*/
+
+enum IMU_COMMANDS {
+	READACC,
+	READGYR,
+	READIMU
+};
 
 /* Class -----------------------------------------------------------------*/
 
@@ -37,7 +47,7 @@ protected:
 
     void Run(void * pvParams); // Main run code
 
-    void HandleCommand(Command& cm);
+    void HandleCommand(Command& com);
 
 private:
     // Private Functions
@@ -46,7 +56,8 @@ private:
        IMUTask& operator=(const IMUTask&);            // Prevent assignment
 
     // Private Variables
-       I2C_HandleTypeDef hi2c2;
+       LSM6DSO MainBoardIMU;
+       float buffer[3];
 };
 
 #endif //SOAR_IMUTASK_HPP

@@ -124,20 +124,18 @@ void DebugTask::HandleDebugMessage(const char* msg)
     }
     else if (strcmp(msg, "test act") == 0) {
     	SOAR_PRINT("Testing...");
-    	GPIO::COMPRESSOR::On();
-    	osDelay(1500);
     	GPIO::SOL1::On();
-    	osDelay(3000);
-    	GPIO::SOL1::Off();
+    	osDelay(500);
     	GPIO::SOL2::On();
-    	osDelay(3000);
-    	GPIO::SOL2::Off();
+    	osDelay(500);
     	GPIO::SOL3::On();
-    	osDelay(3000);
-    	GPIO::SOL3::Off();
     	osDelay(1000);
-    	GPIO::COMPRESSOR::Off();
-    	SOAR_PRINT("done");
+    	GPIO::SOL1::Off();
+    	osDelay(500);
+    	GPIO::SOL2::Off();
+    	osDelay(500);
+    	GPIO::SOL3::Off();
+    	SOAR_PRINT("done\n");
     }
     else {
         // Single character command, or unknown command

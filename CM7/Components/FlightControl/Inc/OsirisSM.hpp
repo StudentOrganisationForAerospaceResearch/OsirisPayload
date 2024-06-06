@@ -67,6 +67,7 @@ enum OsirisControlCommands
 	OSC_COMPRESSOR_ON,
 	OSC_COMPRESSOR_OFF,
 
+
     // -- TECHNICAL --
     OSC_NONE   // Invalid command, must be last
 };

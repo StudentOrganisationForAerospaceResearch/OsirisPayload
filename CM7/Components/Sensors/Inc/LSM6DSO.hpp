@@ -59,6 +59,9 @@ enum WEIGHT {
 class LSM6DSO {
 private:
 	I2C_HandleTypeDef i2c;
+//	SPI_HandleTypeDef spi;
+//	bool usingSPI;
+
 	float AccelMaxArray[4] = {4*9.81, 32*9.81, 8*9.81, 16*9.81}; // m/s^2
 	unsigned short currentAccelMax = 0; //ptr into above array
 
@@ -80,6 +83,7 @@ public:
 	const static uint8_t I2C_READ_ADDRESS = 0xD5;
 	const static uint8_t I2C_WRITE_ADDRESS = 0xD4;
 	LSM6DSO(I2C_HandleTypeDef &i2c);
+//	LSM6DSO(SPI_HandleTypeDef &spi);
 
 	// Returns True on Success
 	bool init(bool useInterrupts = false, uint16_t interruptPin = -1);
