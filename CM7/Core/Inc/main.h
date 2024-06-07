@@ -81,8 +81,8 @@ void Error_Handler(void);
 #define ExpIMUInt2_GPIO_Port GPIOA
 #define ExpIMUCS_Pin GPIO_PIN_12
 #define ExpIMUCS_GPIO_Port GPIOC
-#define Compressor_Pin GPIO_PIN_15
-#define Compressor_GPIO_Port GPIOG
+#define COMPRESSOR_Pin GPIO_PIN_15
+#define COMPRESSOR_GPIO_Port GPIOG
 #define SOL1_Pin GPIO_PIN_3
 #define SOL1_GPIO_Port GPIOB
 
