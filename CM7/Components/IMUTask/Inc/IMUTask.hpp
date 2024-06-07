@@ -25,9 +25,8 @@
 /* Enums -----------------------------------------------------------------*/
 
 enum IMU_COMMANDS {
-	READACC,
-	READGYR,
-	READIMU
+	IMU_REQUEST_LIN_ACC,
+	IMU_REQUEST_ANG_ACC,
 };
 
 /* Class -----------------------------------------------------------------*/

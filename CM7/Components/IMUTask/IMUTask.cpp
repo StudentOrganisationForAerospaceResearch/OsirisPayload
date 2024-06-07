@@ -7,6 +7,7 @@
 #include "Inc//IMUTask.hpp"
 #include "GPIO.hpp"
 #include "SystemDefines.hpp"
+#include
 
 extern I2C_HandleTypeDef hi2c2;
 
@@ -75,7 +76,7 @@ void IMUTask::HandleCommand(Command& com)
 		 {
 		 case READACC:
 			 MainBoardIMU.readLinearAccel(buffer[0], buffer[2], buffer[4]);
-			 Command IMUData(DATA_COMMAND, FlightTask::Inst());
+			 Command IMUData(DATA_COMMAND, );
 			 IMUData.AllocateData(6);
 			 for (uint8_t i = 0; i < 3; i++)
 			 {
@@ -83,6 +84,7 @@ void IMUTask::HandleCommand(Command& com)
 				 buffer[i] = buffer[i] >> 8;
 			 }
 			 IMUData.CopyDataToCommand((uint8_t*)buffer, 6); //TODO call convertToM2() on the other side
+			 FlightTask ::Inst().GetEventQueue->Send(cmd);
 		 case READGYR:
 			 MainBoardIMU.readAngularAccel(buffer[0], buffer[2], buffer[4]);
 			 Command IMUData(DATA_COMMAND, FlightTask::Inst());
@@ -94,6 +96,9 @@ void IMUTask::HandleCommand(Command& com)
 			 }
 			 IMUData.CopyDataToCommand((uint8_t*)buffer, 6); //TODO call convertToDPS() on the other side
 		 }
+		 case DATA_COMMAND:
+		 case ACCEL :
+			 PRITNT
 		 default:
 			 break;
 	 }

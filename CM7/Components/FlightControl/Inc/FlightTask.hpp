@@ -15,6 +15,8 @@ enum FlightTaskRequests
 {
 	FT_REQUEST_NONE = 0,
 	FT_REQUEST_TRANSMIT_STATE,
+	FT_RECEIVE_LINACCEL,
+	FT_RECEIVE_ANGACCEL,
 };
 
 class FlightTask : public Task
