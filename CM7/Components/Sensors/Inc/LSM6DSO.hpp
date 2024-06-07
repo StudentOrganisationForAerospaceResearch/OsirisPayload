@@ -75,8 +75,7 @@ private:
 	bool usingInterrupts = false;
 	bool readReg(uint16_t regAddr, uint8_t *output);
 	bool writeReg(uint16_t regAddr, uint8_t value);
-	float convertToMS2(const int16_t value) const;
-	float convertToDPS(const int16_t value) const;
+
 	//bool disableBuffer(); Disabled by default so I don't care and won't be writing this
 public:
 	const static uint8_t CORRECT_ID = 0x6C;
@@ -110,8 +109,11 @@ public:
 	// bool setGyroOffset(float &pitch, float &roll, float &yaw); this doesn't exist lol
 
 	// Actually read the data without using interrupts
-	bool readLinearAccel(float &xOut, float &yOut, float &zOut);
-	bool readAngularAccel(float &pitch,float &roll ,float &yaw);
+	bool readLinearAccel(uint16_t &xOut, uint16_t &yOut, uint16_t &zOut);
+	bool readAngularAccel(uint16_t &pitch,uint16_t &roll ,uint16_t &yaw);
+
+	float convertToMS2(const int16_t value) const;
+	float convertToDPS(const int16_t value) const;
 };
 
 

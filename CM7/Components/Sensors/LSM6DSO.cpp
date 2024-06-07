@@ -139,7 +139,7 @@ float LSM6DSO::convertToDPS(const int16_t value) const
 	return (((float) value) / 32767.0f / 9.81f) * GyroMaxArray[currentGyroMax >> 1];
 }
 
-bool LSM6DSO::readLinearAccel(float &xOut, float &yOut, float &zOut)
+bool LSM6DSO::readLinearAccel(uint16_t &xOut, uint16_t &yOut, uint16_t &zOut)
 {
 	if (initStatus == false) return false;
 
@@ -175,14 +175,14 @@ bool LSM6DSO::readLinearAccel(float &xOut, float &yOut, float &zOut)
 			}
 		}
 	}
-	xOut = convertToMS2(x);
-	yOut = convertToMS2(y);
-	zOut = convertToMS2(z);
+	xOut = x;
+	yOut = y;
+	zOut = z;
 	return true;
 
 
 }
-bool LSM6DSO::readAngularAccel(float &pitch,float &roll ,float &yaw)
+bool LSM6DSO::readAngularAccel(uint16_t &pitch,uint16_t &roll ,uint16_t &yaw)
 {
 	if (initStatus == false) return false;
 
@@ -218,9 +218,9 @@ bool LSM6DSO::readAngularAccel(float &pitch,float &roll ,float &yaw)
 			}
 		}
 	}
-	pitch = convertToDPS(x);
-	roll = convertToDPS(y);
-	yaw = convertToDPS(z);
+	pitch = x;
+	roll = y;
+	yaw = z;
 	return true;
 }
 

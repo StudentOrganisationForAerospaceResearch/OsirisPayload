@@ -74,11 +74,28 @@ void IMUTask::HandleCommand(Command& com)
 		 switch(com.GetTaskCommand())
 		 {
 		 case READACC:
-			 MainBoardIMU.readLinearAccel(buffer[0], buffer[1], buffer[2]);
-//			 Command IMUData(DATA_COMMAND, /*TODO add target*/);
-//			 IMUData.AllocateData(3);
-//			 IMUData.CopyDataToCommand(buffer, 3);
+			 MainBoardIMU.readLinearAccel(buffer[0], buffer[2], buffer[4]);
+			 Command IMUData(DATA_COMMAND, FlightTask::Inst());
+			 IMUData.AllocateData(6);
+			 for (uint8_t i = 0; i < 3; i++)
+			 {
+				 buffer[i+1] = buffer[i] && 0x00FF;
+				 buffer[i] = buffer[i] >> 8;
+			 }
+			 IMUData.CopyDataToCommand((uint8_t*)buffer, 6); //TODO call convertToM2() on the other side
+		 case READGYR:
+			 MainBoardIMU.readAngularAccel(buffer[0], buffer[2], buffer[4]);
+			 Command IMUData(DATA_COMMAND, FlightTask::Inst());
+			 IMUData.AllocateData(6);
+			 for (uint8_t i = 0; i < 3; i++)
+			 {
+				 buffer[i+1] = buffer[i] && 0x00FF;
+				 buffer[i] = buffer[i] >> 8;
+			 }
+			 IMUData.CopyDataToCommand((uint8_t*)buffer, 6); //TODO call convertToDPS() on the other side
 		 }
+		 default:
+			 break;
 	 }
 }
 
