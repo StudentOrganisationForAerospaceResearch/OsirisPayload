@@ -7,6 +7,7 @@
 #include <OsirisSM.hpp>
 #include "SystemDefines.hpp"
 #include "GPIO.hpp"
+#include "Data.hpp"
 
 /* Osiris State Machine ------------------------------------------------------------------*/
 
@@ -213,6 +214,18 @@ OsirisState PreLaunch::HandleCommand(Command& cm)
 			}
 			break;
 		}
+		case DATA_COMMAND:
+			switch(cm.GetTaskCommand()) {
+			case OSC_RECEIVE_LINACC:
+				uint16_t printBuf[3] = {0, 0, 0};
+				char printBuf2[31];
+				IMUData* data = (IMUData*)cm.GetDataPointer();
+				printBuf[0] = data->xAccel;
+				printBuf[1] = data->yAccel;
+				printBuf[2] = data->zAccel;
+				sprintf(printBuf2, " X: %u\n Y: %u\n Z: %u\n", printBuf[0], printBuf[1], printBuf[2]);
+				SOAR_PRINT(printBuf2);
+			}
 		default:
 			// Do nothing
 			break;

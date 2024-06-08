@@ -54,6 +54,9 @@ private:
        IMUTask(const IMUTask&);                        // Prevent copy-construction
        IMUTask& operator=(const IMUTask&);            // Prevent assignment
 
+       void sendLinData(LSM6DSO& unit);
+       void sendAngData(LSM6DSO& unit);
+
     // Private Variables
        LSM6DSO MainBoardIMU;
        uint16_t buffer[6];

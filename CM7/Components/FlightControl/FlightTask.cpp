@@ -35,10 +35,6 @@ void FlightTask::InitTask()
 
     SOAR_ASSERT(rtValue == pdPASS, "FlightTask::InitTask() - xTaskCreate() failed");
     GPIO::LED_GREEN::On();
-
-
-
-
 }
 
 /**
