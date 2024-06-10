@@ -70,16 +70,18 @@ void Error_Handler(void);
 
 /* Private defines -----------------------------------------------------------*/
 #define SOL3_Pin GPIO_PIN_5
-#define SOL3_GPIO_Port GPIOC
+#define SOL3_GPIO_Port GPIOA
 #define SOL2_Pin GPIO_PIN_4
 #define SOL2_GPIO_Port GPIOC
 #define LED_GREEN_Pin GPIO_PIN_11
 #define LED_GREEN_GPIO_Port GPIOA
 #define LED_BLUE_Pin GPIO_PIN_12
 #define LED_BLUE_GPIO_Port GPIOA
-#define COMPRESSOR_Pin GPIO_PIN_15
-#define COMPRESSOR_GPIO_Port GPIOG
-#define SOL1_Pin GPIO_PIN_3
+#define SPI2_CS_Pin GPIO_PIN_12
+#define SPI2_CS_GPIO_Port GPIOC
+#define COMPRESSOR_Pin GPIO_PIN_4
+#define COMPRESSOR_GPIO_Port GPIOB
+#define SOL1_Pin GPIO_PIN_5
 #define SOL1_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */

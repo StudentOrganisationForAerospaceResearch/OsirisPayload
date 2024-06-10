@@ -11,12 +11,12 @@
 #include "Data.hpp"
 
 extern I2C_HandleTypeDef hi2c2;
-
+extern SPI_HandleTypeDef hspi6;
 /*
  * @breif Constructor
  */
 
-IMUTask::IMUTask() : Task(IMU_TASK_STACK_DEPTH_WORDS), MainBoardIMU(hi2c2)
+IMUTask::IMUTask() : Task(IMU_TASK_STACK_DEPTH_WORDS), MainBoardIMU(hi2c2), ExpBoardIMU(hspi6)
 {
 }
 
@@ -45,13 +45,6 @@ void IMUTask::InitTask()
 
 void IMUTask::Run(void *pvParams)
 {
-//	Command test(DATA_COMMAND, OSC_RECEIVE_LINACC);
-//	IMUData testData;
-//	testData.xAccel = 0xAAAA;
-//	testData.yAccel = 0xFFFF;
-//	testData.zAccel = 0xBBBB;
-//	test.CopyDataToCommand((uint8_t*)&testData, sizeof(testData));
-//	FlightTask::Inst().GetEventQueue()->Send(test);
 
 //	initialize low-level drivers
 	while (!MainBoardIMU.init()) {osDelay(30);}
@@ -59,15 +52,21 @@ void IMUTask::Run(void *pvParams)
 	MainBoardIMU.setAccelMax(G4);
 	MainBoardIMU.setGyroMax(DPS500);
 	MainBoardIMU.setAccelSpeed(IMUTASK_ODR);
-	MainBoardIMU.setAccelSpeed(IMUTASK_ODR);
+	MainBoardIMU.setGyroSpeed(IMUTASK_ODR);
 	MainBoardIMU.setAccelOffsetState(true);
-	MainBoardIMU.setAccelOffset(1, 1, 1, STRONG); //TODO set these to numbers that make sense
+	MainBoardIMU.setAccelOffset(0, 0, 0, STRONG); //TODO set these to numbers that make sense
 
-//	sendLinData(MainBoardIMU);
+//	GPIO::SPI2_CS::On();
+//	while(!ExpBoardIMU.init()) {osDelay(30);}
+//	ExpBoardIMU.setInterrupts(false);
+//	ExpBoardIMU.setAccelMax(G4);
+//	ExpBoardIMU.setGyroMax(DPS500);
+//	ExpBoardIMU.setAccelSpeed(IMUTASK_ODR);
+//	ExpBoardIMU.setGyroSpeed(IMUTASK_ODR);
+//	ExpBoardIMU.setAccelOffsetState(true);
+//	ExpBoardIMU.setAccelOffset(0, 0, 0, STRONG); //TODO set these to numbers that make sense
 
-	//	LSM6DSO ExpBoardIMU(hi2c)
-	//	while(!ExpBoardIMU.init())
-
+	GPIO::LED_BLUE::On();
 	while (1) {
 
 		//Process commands in blocking mode
@@ -87,11 +86,14 @@ void IMUTask::HandleCommand(Command& com)
 		 {
 		 case IMU_REQUEST_LIN_ACC:
 			 sendLinData(MainBoardIMU);
+			 break;
 		 case IMU_REQUEST_ANG_ACC:
 			 sendAngData(MainBoardIMU);
+			 break;
 		 default:
 				 break;
 		 }
+		 break;
 		 default:
 			 break;
 	 }
@@ -100,35 +102,22 @@ void IMUTask::HandleCommand(Command& com)
 
 void IMUTask::sendLinData(LSM6DSO& unit)
 {
-	unit.readLinearAccel(buffer[0], buffer[2], buffer[4]);
+	IMUData dataRead;
+	unit.readLinearAccel(dataRead.xAccel, dataRead.yAccel, dataRead.zAccel);
 
-	char printBuffer[31];
-	sprintf(printBuffer, " X: %u\n Y: %u\n Z: %u\n", buffer[0], buffer[2], buffer[4]);
-	SOAR_PRINT(printBuffer);
-
-	Command IMUData(DATA_COMMAND, OSC_RECEIVE_LINACC);
-	IMUData.AllocateData(6);
-	for (uint8_t i = 0; i < 6; i+2)
-	{
-	 buffer[i+1] = buffer[i] && 0x00FF;
-	 buffer[i] = buffer[i] >> 8;
-	}
-	IMUData.CopyDataToCommand((uint8_t*)buffer, 6); //TODO call convertToDPS() on the other side
+	Command IMUData(DATA_COMMAND, OSC_RECEIVE_LINACC); //TODO change this to the correct task and definition
+	IMUData.CopyDataToCommand((uint8_t*)&dataRead, sizeof(dataRead));
 	FlightTask::Inst().GetEventQueue()->Send(IMUData);
 }
 
 void IMUTask::sendAngData(LSM6DSO& unit)
 {
-	unit.readAngularAccel(buffer[0], buffer[2], buffer[4]);
-	Command IMUData(DATA_COMMAND, OSC_RECEIVE_ANGACC);
-	IMUData.AllocateData(6);
-	for (uint8_t i = 0; i < 6; i+2)
-	{
-	 buffer[i+1] = buffer[i] && 0x00FF;
-	 buffer[i] = buffer[i] >> 8;
-	}
-	IMUData.CopyDataToCommand((uint8_t*)buffer, 6); //TODO call convertToDPS() on the other side
-	FlightTask ::Inst().GetEventQueue()->Send(IMUData);
+	IMUData dataRead;
+	unit.readLinearAccel(dataRead.xAccel, dataRead.yAccel, dataRead.zAccel);
+
+	Command IMUData(DATA_COMMAND, OSC_RECEIVE_ANGACC); //TODO Change this to the correct task and definition
+	IMUData.CopyDataToCommand((uint8_t*)&dataRead, sizeof(dataRead));
+	FlightTask::Inst().GetEventQueue()->Send(IMUData);
 }
 
 

@@ -7,9 +7,9 @@
 #include <stdint.h>
 
 typedef struct IMUData {
-	uint16_t xAccel;
-	uint16_t yAccel;
-	uint16_t zAccel;
+	float xAccel;
+	float yAccel;
+	float zAccel;
 } IMUData;
 
 typedef struct AltimeterData {

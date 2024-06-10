@@ -37,6 +37,9 @@ void run_main() {
     SOAR_PRINT("Current System Free Heap: %d Bytes\n", xPortGetFreeHeapSize());
     SOAR_PRINT("Lowest Ever Free Heap: %d Bytes\n\n", xPortGetMinimumEverFreeHeapSize());
 
+    Command testIMU(REQUEST_COMMAND, IMU_REQUEST_LIN_ACC);
+	IMUTask::Inst().GetEventQueue()->Send(testIMU);
+
     // Start the Scheduler
     // Guidelines:
     // - Be CAREFUL with race conditions after osKernelStart

@@ -16,6 +16,7 @@
 // External Tasks (to send debug commands to)
 #include "FlightTask.hpp"
 #include "GPIO.hpp"
+#include "IMUTask//Inc//IMUTask.hpp"
 
 /* Macros --------------------------------------------------------------------*/
 
@@ -137,6 +138,11 @@ void DebugTask::HandleDebugMessage(const char* msg)
     	GPIO::SOL3::Off();
     	SOAR_PRINT("done\n");
     }
+    else if (strcmp(msg, "imuread") == 0)
+	{
+    	Command testIMU(REQUEST_COMMAND, IMU_REQUEST_LIN_ACC);
+    	IMUTask::Inst().GetEventQueue()->Send(testIMU);
+	}
     else {
         // Single character command, or unknown command
         switch (msg[0]) {

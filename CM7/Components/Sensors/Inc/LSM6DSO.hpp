@@ -16,6 +16,7 @@
 #define CRTL_A 0x10 // accelerometer
 #define CRTL_G 0x11 // gyro
 
+#define CTRL_3 0x12
 #define CTRL_6 0x15
 #define CTRL_7 0x16
 
@@ -59,8 +60,8 @@ enum WEIGHT {
 class LSM6DSO {
 private:
 	I2C_HandleTypeDef i2c;
-//	SPI_HandleTypeDef spi;
-//	bool usingSPI;
+	SPI_HandleTypeDef spi;
+	bool usingSPI;
 
 	float AccelMaxArray[4] = {4*9.81, 32*9.81, 8*9.81, 16*9.81}; // m/s^2
 	unsigned short currentAccelMax = 0; //ptr into above array
@@ -82,7 +83,7 @@ public:
 	const static uint8_t I2C_READ_ADDRESS = 0xD5;
 	const static uint8_t I2C_WRITE_ADDRESS = 0xD4;
 	LSM6DSO(I2C_HandleTypeDef &i2c);
-//	LSM6DSO(SPI_HandleTypeDef &spi);
+	LSM6DSO(SPI_HandleTypeDef &spi);
 
 	// Returns True on Success
 	bool init(bool useInterrupts = false, uint16_t interruptPin = -1);
@@ -109,8 +110,8 @@ public:
 	// bool setGyroOffset(float &pitch, float &roll, float &yaw); this doesn't exist lol
 
 	// Actually read the data without using interrupts
-	bool readLinearAccel(uint16_t &xOut, uint16_t &yOut, uint16_t &zOut);
-	bool readAngularAccel(uint16_t &pitch,uint16_t &roll ,uint16_t &yaw);
+	bool readLinearAccel(float &xOut, float &yOut, float &zOut);
+	bool readAngularAccel(float &pitch,float &roll ,float &yaw);
 
 	float convertToMS2(const int16_t value) const;
 	float convertToDPS(const int16_t value) const;

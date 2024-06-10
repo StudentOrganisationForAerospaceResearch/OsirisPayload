@@ -59,7 +59,7 @@ private:
 
     // Private Variables
        LSM6DSO MainBoardIMU;
-       uint16_t buffer[6];
+       LSM6DSO ExpBoardIMU;
 };
 
 #endif //SOAR_IMUTASK_HPP

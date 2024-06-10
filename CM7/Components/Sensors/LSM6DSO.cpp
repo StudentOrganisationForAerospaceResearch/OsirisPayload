@@ -6,20 +6,32 @@
  */
 
 #include "Inc//LSM6DSO.hpp"
+#include "GPIO.hpp"
 
 LSM6DSO::LSM6DSO(I2C_HandleTypeDef &i2c) {
 	this->i2c = i2c;
+	usingSPI = false;
+}
+
+LSM6DSO::LSM6DSO(SPI_HandleTypeDef &spi) {
+	this->spi = spi;
+	usingSPI = true;
 }
 
 bool LSM6DSO::init(bool useInterrupts, uint16_t interruptPin)
 {
+	//reset IMU to clear interrupt problems
+	writeReg(CTRL_3, 0x03);
+	osDelay(50);
+
 	// pretty sure this should never happen
 	if (interruptPin == -1 && usingInterrupts) return false;
 
 	uint8_t buf = 0;
 	initStatus = readReg(WHO_AM_I, &buf);
-	initStatus = initStatus && setAccelSpeed(DEFAULT_SPEED) &&
-			setGyroSpeed(DEFAULT_SPEED) && (buf == CORRECT_ID);
+	initStatus = initStatus && (buf == CORRECT_ID);
+//	&& setAccelSpeed(DEFAULT_SPEED) &&
+//				setGyroSpeed(DEFAULT_SPEED) &&
 	// if we successfully set it, set it
 	if (setInterrupts(useInterrupts) && initStatus) usingInterrupts = useInterrupts;
 	return initStatus;
@@ -64,15 +76,25 @@ bool LSM6DSO::setGyroSpeed(uint8_t speed)
 
 bool LSM6DSO::readReg(uint16_t regAddr, uint8_t *output)
 {
-	uint8_t buf = 0xAA;
-	if (HAL_OK != HAL_I2C_Mem_Read(&i2c, I2C_READ_ADDRESS, regAddr, 1, &buf, 1, 100))
+	if (usingSPI == false)
 	{
-		return false;
+		uint8_t buf = 0xAA;
+		if (HAL_OK != HAL_I2C_Mem_Read(&i2c, I2C_READ_ADDRESS, regAddr, 1, &buf, 1, 100))
+		{
+			return false;
+		}
+		*output = buf;
+		return true;
+	} else {
+		uint8_t buf = 0xAA;
+		GPIO::SPI2_CS::Off();
+		HAL_SPI_Transmit(&spi, (uint8_t*)&regAddr, 1, 100);
+		HAL_SPI_Receive(&spi, &buf, 1, 100);
+		GPIO::SPI2_CS::On();
+		*output = buf;
+		return true;
 	}
-	*output = buf;
-	//HAL_I2C_Master_Transmit(&i2c, I2C_WRITE_ADDRESS, )
-	//HAL_I2C_Master_Receive(&i2c, I2C_READ_ADDRESS, &buf, 1, 100);
-	return true;
+
 }
 bool LSM6DSO::setAccelMax(MAX_G max)
 {
@@ -125,7 +147,14 @@ bool LSM6DSO::setAccelOffset(const int8_t x, const int8_t y, const int8_t z, WEI
 
 bool LSM6DSO::writeReg(uint16_t regAddr, uint8_t value)
 {
-	return (HAL_OK == HAL_I2C_Mem_Write(&i2c, I2C_WRITE_ADDRESS, regAddr, 1, &value, 1, 100));
+	if (usingSPI == false)
+	{
+		return (HAL_OK == HAL_I2C_Mem_Write(&i2c, I2C_WRITE_ADDRESS, regAddr, 1, &value, 1, 100));
+	} else {
+		uint8_t msg[2] = {regAddr, value};
+		return HAL_SPI_Transmit(&spi, msg, 2, 100);
+	}
+
 }
 
 // Should be made static but I'm lazy
@@ -139,7 +168,7 @@ float LSM6DSO::convertToDPS(const int16_t value) const
 	return (((float) value) / 32767.0f / 9.81f) * GyroMaxArray[currentGyroMax >> 1];
 }
 
-bool LSM6DSO::readLinearAccel(uint16_t &xOut, uint16_t &yOut, uint16_t &zOut)
+bool LSM6DSO::readLinearAccel(float &xOut, float &yOut, float &zOut)
 {
 	if (initStatus == false) return false;
 
@@ -175,14 +204,14 @@ bool LSM6DSO::readLinearAccel(uint16_t &xOut, uint16_t &yOut, uint16_t &zOut)
 			}
 		}
 	}
-	xOut = x;
-	yOut = y;
-	zOut = z;
+	xOut = convertToMS2(x);
+	yOut = convertToMS2(y);
+	zOut = convertToMS2(z);
 	return true;
 
 
 }
-bool LSM6DSO::readAngularAccel(uint16_t &pitch,uint16_t &roll ,uint16_t &yaw)
+bool LSM6DSO::readAngularAccel(float &pitch,float &roll ,float &yaw)
 {
 	if (initStatus == false) return false;
 
@@ -218,9 +247,9 @@ bool LSM6DSO::readAngularAccel(uint16_t &pitch,uint16_t &roll ,uint16_t &yaw)
 			}
 		}
 	}
-	pitch = x;
-	roll = y;
-	yaw = z;
+	pitch = convertToDPS(x);
+	roll = convertToDPS(y);
+	yaw = convertToDPS(z);
 	return true;
 }
 
