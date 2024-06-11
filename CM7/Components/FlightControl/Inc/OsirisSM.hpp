@@ -44,6 +44,7 @@ enum OsirisControlCommands
 
 	// -- PRELAUNCH --
 	OSC_PRELAUNCH_TO_LAUNCH,
+	OSC_PRELAUNCH_TO_DROGUE,	// Used to bypass launch state if launch detection fails
 
 	// -- LAUNCH --
 	OSC_LAUNCH_TO_DROGUE,
@@ -99,6 +100,8 @@ public:
     OsirisSM(OsirisState startingState, bool enterStartingState);
 
     void HandleCommand(Command& cm);
+
+    OsirisState GetStateID() { return os_currentState->GetStateID(); }
 
 protected:
     OsirisState TransitionState(OsirisState nextState);

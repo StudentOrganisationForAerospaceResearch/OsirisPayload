@@ -197,6 +197,9 @@ OsirisState PreLaunch::HandleCommand(Command& cm)
 					// Transition to Launch state
 					nextStateID = OS_LAUNCH;
 					break;
+				case OSC_PRELAUNCH_TO_DROGUE:
+					nextStateID = OS_LAUNCH;
+					break;
 				case OSC_ANY_TO_PRELAUNCH:
 					// Transition to PreLaunch state
 					nextStateID = OS_PRELAUNCH;
