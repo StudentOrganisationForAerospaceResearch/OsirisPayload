@@ -16,6 +16,7 @@
 // External Tasks (to send debug commands to)
 #include "FlightTask.hpp"
 #include "GPIO.hpp"
+#include "main_system.hpp"
 
 /* Macros --------------------------------------------------------------------*/
 
@@ -23,6 +24,8 @@
 
 /* Constants -----------------------------------------------------------------*/
 constexpr uint8_t DEBUG_TASK_PERIOD = 100;
+
+extern I2C_HandleTypeDef hi2c2;
 
 /* Variables -----------------------------------------------------------------*/
 
