@@ -108,8 +108,13 @@ PreLaunch::PreLaunch()
  */
 OsirisState PreLaunch::OnEnter()
 {
+	//Baisic IO
 	PreLaunch::CloseAllPeripherals();
 	GPIO::LED_GREEN::On();
+
+//	//TODO Init Madgewick filter
+//	madFilter.initialise();
+
     return osStateID;
 }
 

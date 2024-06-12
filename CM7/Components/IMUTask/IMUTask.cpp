@@ -16,7 +16,7 @@ extern SPI_HandleTypeDef hspi6;
  * @breif Constructor
  */
 
-IMUTask::IMUTask() : Task(IMU_TASK_STACK_DEPTH_WORDS), MainBoardIMU(hi2c2), ExpBoardIMU(hspi6)
+IMUTask::IMUTask() : Task(IMU_TASK_STACK_DEPTH_WORDS), toopy(hi2c2), binoo(hspi6)
 {
 }
 
@@ -47,26 +47,26 @@ void IMUTask::Run(void *pvParams)
 {
 
 //	initialize low-level drivers
-	while (!MainBoardIMU.init()) {osDelay(30);}
-	MainBoardIMU.setInterrupts(false);
-	MainBoardIMU.setAccelMax(G4);
-	MainBoardIMU.setGyroMax(DPS500);
-	MainBoardIMU.setAccelSpeed(IMUTASK_ODR);
-	MainBoardIMU.setGyroSpeed(IMUTASK_ODR);
-	MainBoardIMU.setAccelOffsetState(true);
-	MainBoardIMU.setAccelOffset(0, 0, 0, STRONG); //TODO set these to numbers that make sense
+	while (!toopy.init()) {osDelay(30);}
+	toopy.setInterrupts(false);
+	toopy.setAccelMax(G4);
+	toopy.setGyroMax(DPS500);
+	toopy.setAccelSpeed(IMUTASK_ODR);
+	toopy.setGyroSpeed(IMUTASK_ODR);
+	toopy.setAccelOffsetState(true);
+	toopy.setAccelOffset(0, 0, 0, STRONG); //TODO set these to numbers that make sense
 
-//	GPIO::SPI2_CS::On();
-//	while(!ExpBoardIMU.init()) {osDelay(30);}
-//	ExpBoardIMU.setInterrupts(false);
-//	ExpBoardIMU.setAccelMax(G4);
-//	ExpBoardIMU.setGyroMax(DPS500);
-//	ExpBoardIMU.setAccelSpeed(IMUTASK_ODR);
-//	ExpBoardIMU.setGyroSpeed(IMUTASK_ODR);
-//	ExpBoardIMU.setAccelOffsetState(true);
-//	ExpBoardIMU.setAccelOffset(0, 0, 0, STRONG); //TODO set these to numbers that make sense
+	GPIO::SPI2_CS::On();
+	while(!binoo.init()) {osDelay(30);}
+	binoo.setInterrupts(false);
+	binoo.setAccelMax(G4);
+	binoo.setGyroMax(DPS500);
+	binoo.setAccelSpeed(IMUTASK_ODR);
+	binoo.setGyroSpeed(IMUTASK_ODR);
+	binoo.setAccelOffsetState(true);
+	binoo.setAccelOffset(0, 0, 0, STRONG); //TODO set these to numbers that make sense
 
-	GPIO::LED_BLUE::On();
+
 	while (1) {
 
 		//Process commands in blocking mode
@@ -85,10 +85,10 @@ void IMUTask::HandleCommand(Command& com)
 		 switch(com.GetTaskCommand())
 		 {
 		 case IMU_REQUEST_LIN_ACC:
-			 sendLinData(MainBoardIMU);
+			 sendLinData(toopy);
 			 break;
 		 case IMU_REQUEST_ANG_ACC:
-			 sendAngData(MainBoardIMU);
+			 sendAngData(toopy);
 			 break;
 		 default:
 				 break;
@@ -98,7 +98,6 @@ void IMUTask::HandleCommand(Command& com)
 			 break;
 	 }
 }
-
 
 void IMUTask::sendLinData(LSM6DSO& unit)
 {

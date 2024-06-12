@@ -5,6 +5,10 @@
  ******************************************************************************
 */
 
+#define toopy MainBoardIMU
+#define binoo ExpBoardIMU
+
+
 #ifndef SOAR_IMUTASK_HPP
 #define SOAR_IMUTASK_HPP
 

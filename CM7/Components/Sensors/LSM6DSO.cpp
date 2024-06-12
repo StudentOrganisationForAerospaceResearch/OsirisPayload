@@ -86,12 +86,12 @@ bool LSM6DSO::readReg(uint16_t regAddr, uint8_t *output)
 		*output = buf;
 		return true;
 	} else {
-		uint8_t buf = 0xAA;
+		uint8_t* buf = (uint8_t*)&regAddr;
 		GPIO::SPI2_CS::Off();
-		HAL_SPI_Transmit(&spi, (uint8_t*)&regAddr, 1, 100);
-		HAL_SPI_Receive(&spi, &buf, 1, 100);
+		HAL_SPI_Transmit(&spi, buf, 1, 100);
+		HAL_SPI_Receive(&spi, buf, 1, 100);
 		GPIO::SPI2_CS::On();
-		*output = buf;
+		output = buf;
 		return true;
 	}
 
