@@ -41,3 +41,10 @@ void AltitudeTask::Run(void* pvParams)
 			HandleCommand(cm);
 	}
 }
+
+
+void AltitudeTask::HandleCommand(Command& cm)
+{
+//	switch()
+}
+
