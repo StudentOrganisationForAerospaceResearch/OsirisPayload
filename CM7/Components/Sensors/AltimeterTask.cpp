@@ -44,6 +44,16 @@ void AltimeterTask::InitTask()
 void AltimeterTask::Run(void * pvParams)
 {
     
+    MPL3115A2S_Config cfg {0};
+    MPL3115A2S_Data_Config dcfg {0};
+    MPL3115A2S_Int_Config icfg {0};
+
+    cfg.altimeter_mode = 1;
+    cfg.os_ratio = MPL3115A2S_CTRL_OS32;
+    dcfg.enable_all_flags = 1;
+
+    MPL3115A2S_Init(&cfg, &dcfg, &icfg);
+
     while (1) {
 
         //Process commands in blocking mode
@@ -84,16 +94,6 @@ void AltimeterTask::HandleCommand(Command& cm)
  */
 void AltimeterTask::SampleAltimeter()
 {
-    MPL3115A2S_Config cfg {0};
-    MPL3115A2S_Data_Config dcfg {0};
-    MPL3115A2S_Int_Config icfg {0};
-
-    cfg.altimeter_mode = 1;
-    cfg.os_ratio = MPL3115A2S_CTRL_OS32;
-    dcfg.enable_all_flags = 1;
-
-    MPL3115A2S_Init(&cfg, &dcfg, &icfg);
-
     float alt, temp;
     MPL3115A2S_ReadDataPolling(&alt, &temp);
 

@@ -32,7 +32,6 @@ typedef struct AltimeterData {
  */
 typedef struct AllData {
     // IMUData*              imuData;
-    // AltimeterData*        altimeterData;
     BarometerData*       barometerData;
     AltimeterData*       altimeterData;
     uint32_t             time;
