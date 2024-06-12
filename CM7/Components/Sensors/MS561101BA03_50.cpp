@@ -84,10 +84,10 @@ void MS5611::readPROM()
 void MS5611::calculate()
 {
     int64_t dT = dtv - ((uint32_t)prom[4] << 8);//dT = D2 - C5 * 2^8
-    int64_t TEMP = 2000 + (((dtv - ((uint32_t)prom[4] << 8)) * prom[5]) >> 23);//TEMP = 20°C + dT* TEMPSENS= 2000 + dT * C6 / 2^23
+    int64_t TEMP = 2000 + ((dT * prom[5]) >> 23);//TEMP = 20°C + dT* TEMPSENS= 2000 + dT * C6 / 2^23
 
-    int64_t OFF = ((uint64_t)prom[1] << 17) + ((prom[3] * dT) >> 7);
-    int64_t SENS = ((uint64_t)prom[0] << 16) + ((prom[2] * dT) >> 8);
+    int64_t OFF = ((uint64_t)prom[1] << 16) + ((prom[3] * dT) >> 7);
+    int64_t SENS = ((uint64_t)prom[0] << 15) + ((prom[2] * dT) >> 8);
 
     //Second order temperature compensation
     int64_t OFF2 = 0;
@@ -114,7 +114,7 @@ void MS5611::calculate()
 
 void MS5611::convertP()
 {
-	osrP = 0x48;//convert pressure command code, OSR - 512 (datasheet page 10)
+	osrP = 0x46;//convert pressure command code, OSR - 2048 (datasheet page 10)
 
 	//set delay between transmit and receive based on osr for pressure
 	if(osrP==0x40)
@@ -144,7 +144,7 @@ void MS5611::convertP()
 
 void MS5611::convertT()
 {
-	osrT = 0x58;//convert temperature command, OSR - 512 (datasheet page 10)
+	osrT = 0x56;//convert temperature command, OSR - 2048 (datasheet page 10)
 
 	//set delay between transmit and receive based on osr for temperature
 	if(osrT==0x50)
@@ -170,35 +170,4 @@ void MS5611::convertT()
 
 	HAL_I2C_Master_Transmit(&port, 0b11101110, &osrT, 1, HAL_MAX_DELAY);
 	osDelay(delayT);//from page 3 of datasheet based on OSR
-	}
-//11101111 00111111 00001111 10010011 00010111 01100010 10010000
-/*int main() {
-    UART_HandleTypeDef huart3;
-    MS5611 ms5611;
-    char msg[50];
-
-    // Initialize the MS5611 sensor
-    ms5611.init();
-
-    // Read the PROM data
-    ms5611.readPROM();
-
-    // Continuously read and calculate temperature and pressure
-    while (1) {
-        ms5611.read();
-        ms5611.calculate();
-
-        // Format the temperature and pressure values as a string
-        sprintf(msg, "Temperature: %.2f C, Pressure: %.2f hPa\r\n", ms5611.temperature, ms5611.pressure);
-
-        // Transmit the string over UART3
-        HAL_UART_Transmit(&huart3, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
-
-
-        // Delay for a second
-        osDelay(1000);
-    }
-
-    return 0;
 }
-*/

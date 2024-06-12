@@ -22,7 +22,6 @@ public:
 
 	MS5611(I2C_HandleTypeDef port);
 
-
     /* Initalizes the I2C line and resets IMU*/
     uint8_t init();
 
@@ -57,7 +56,6 @@ public:
     uint8_t delayP;
     uint8_t delayT;
     uint16_t prom[6];
-    HAL_StatusTypeDef ret;
 
     I2C_HandleTypeDef port;
 };
