@@ -39,6 +39,7 @@ private:
 	AltitudeTask& operator=(const AltitudeTask&);
 
 
+	Everest altFilter;
 };
 
 

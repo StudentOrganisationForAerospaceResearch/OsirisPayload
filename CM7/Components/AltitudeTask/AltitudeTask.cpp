@@ -6,6 +6,7 @@
  */
 
 #include "Inc//AltitudeTask.hpp"
+#include "AltitudeTask//Apogee-Detection-Everest//MadgwickLibrary//everest.hpp"
 
 AltitudeTask::AltitudeTask() : Task(ALTITUDE_TASK_QUEUE_DEPTH_OBJS)
 {
@@ -31,7 +32,7 @@ void AltitudeTask::InitTask()
 void AltitudeTask::Run(void* pvParams)
 {
 
-	MadgwickSetup();
+	altFilter.MadgwickSetup();
 
 	while (1) {
 		//Process commands in blocking mode

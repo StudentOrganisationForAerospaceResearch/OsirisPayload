@@ -1,3 +1,6 @@
 [submodule "CM7/Cube++"]
 	path = CM7/Cube++
 	url = https://github.com/cjchanx/CubePlusPlus.git
+[submodule "CM7/Components/AltitudeTask/Apogee-Detection-Everest"]
+	path = CM7/Components/AltitudeTask/Apogee-Detection-Everest
+	url = https://github.com/AndreyDiDev/Apogee-Detection-Everest.git
