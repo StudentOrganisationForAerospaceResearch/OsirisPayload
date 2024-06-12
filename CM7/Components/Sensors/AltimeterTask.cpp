@@ -7,12 +7,15 @@
 #include "AltimeterTask.hpp"
 #include "GPIO.hpp"
 #include "SystemDefines.hpp"
-
+#include "MPL3115A2S_Driver.h"
+#include "Data.hpp"
+#include "CubeDefines.hpp"
 /**
  * @brief Constructor for AltimeterTask
  */
 AltimeterTask::AltimeterTask() : Task(ALTIMETER_TASK_QUEUE_DEPTH_OBJS)
 {
+    data = (AltimeterData*)cube_malloc(sizeof(AltimeterData));
 }
 
 /**
@@ -60,10 +63,10 @@ void AltimeterTask::HandleCommand(Command& cm)
 {
     switch(cm.GetCommand()) {
         case REQUEST_COMMAND:
-            // Poll the altimeter
+            SampleAltimeter();
             switch(cm.GetTaskCommand()) {
                 case ALTIMETER_REQUEST_POLL:
-                    // Poll the altimeter
+                    SampleAltimeter();
                     break;
                 default:
                     break;
@@ -74,4 +77,26 @@ void AltimeterTask::HandleCommand(Command& cm)
     }
 	// Make sure the command is reset
     cm.Reset();
+}
+
+/**
+ * @brief This function reads and updates altitude readings from the barometer
+ */
+void AltimeterTask::SampleAltimeter()
+{
+    MPL3115A2S_Config cfg {0};
+    MPL3115A2S_Data_Config dcfg {0};
+    MPL3115A2S_Int_Config icfg {0};
+
+    cfg.altimeter_mode = 1;
+    cfg.os_ratio = MPL3115A2S_CTRL_OS32;
+    dcfg.enable_all_flags = 1;
+
+    MPL3115A2S_Init(&cfg, &dcfg, &icfg);
+
+    float alt, temp;
+    MPL3115A2S_ReadDataPolling(&alt, &temp);
+
+    data->altitude = (int32_t) alt;
+    data->timestamp = HAL_GetTick();
 }

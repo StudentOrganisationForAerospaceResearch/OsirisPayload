@@ -8,6 +8,7 @@
 #define SOAR_ALTIMETERTASK_HPP_
 #include "Task.hpp"
 #include "SystemDefines.hpp"
+#include "Data.hpp"
 
 /* Macros/Enums ------------------------------------------------------------*/
 
@@ -35,6 +36,11 @@ protected:
     void Run(void * pvParams); // Main run code
 
     void HandleCommand(Command& cm);
+
+    void SampleAltimeter();
+
+    AltimeterData* data;
+    uint32_t timestampPT;
 
 private:
     // Private Functions
