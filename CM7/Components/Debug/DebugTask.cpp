@@ -23,6 +23,7 @@
 
 /* Constants -----------------------------------------------------------------*/
 constexpr uint8_t DEBUG_TASK_PERIOD = 100;
+extern I2C_HandleTypeDef hi2c2;
 
 /* Variables -----------------------------------------------------------------*/
 
@@ -121,6 +122,21 @@ void DebugTask::HandleDebugMessage(const char* msg)
         SOAR_PRINT("Current System Free Heap: %d Bytes\n", xPortGetFreeHeapSize());
         SOAR_PRINT("Lowest Ever Free Heap: %d Bytes\n", xPortGetMinimumEverFreeHeapSize());
         SOAR_PRINT("Debug Task Runtime  \t: %d ms\n\n", TICKS_TO_MS(xTaskGetTickCount()));
+    }
+    else if (strcmp(msg, "test act") == 0) {
+    	SOAR_PRINT("Testing...");
+    	GPIO::SOL1::On();
+    	osDelay(500);
+    	GPIO::SOL2::On();
+    	osDelay(500);
+    	GPIO::SOL3::On();
+    	osDelay(1000);
+    	GPIO::SOL1::Off();
+    	osDelay(500);
+    	GPIO::SOL2::Off();
+    	osDelay(500);
+    	GPIO::SOL3::Off();
+    	SOAR_PRINT("done\n");
     }
     else {
         // Single character command, or unknown command

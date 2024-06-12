@@ -73,7 +73,6 @@ static void MX_GPIO_Init(void);
 static void MX_QUADSPI_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_I2C1_Init(void);
-static void MX_I2C2_Init(void);
 static void MX_SPI2_Init(void);
 static void MX_SPI5_Init(void);
 static void MX_USART2_UART_Init(void);
@@ -82,6 +81,7 @@ static void MX_UART5_Init(void);
 static void MX_USART6_UART_Init(void);
 static void MX_SPI6_Init(void);
 static void MX_CRC_Init(void);
+static void MX_I2C2_Init(void);
 void StartDefaultTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
@@ -153,7 +153,6 @@ Error_Handler();
   MX_QUADSPI_Init();
   MX_SPI1_Init();
   MX_I2C1_Init();
-  MX_I2C2_Init();
   MX_SPI2_Init();
   MX_SPI5_Init();
   MX_USART2_UART_Init();
@@ -162,6 +161,7 @@ Error_Handler();
   MX_USART6_UART_Init();
   MX_SPI6_Init();
   MX_CRC_Init();
+  MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
   run_interface();
   #if 0
