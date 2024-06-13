@@ -121,6 +121,14 @@ void DebugTask::HandleDebugMessage(const char* msg)
         SOAR_PRINT("Current System Free Heap: %d Bytes\n", xPortGetFreeHeapSize());
         SOAR_PRINT("Lowest Ever Free Heap: %d Bytes\n", xPortGetMinimumEverFreeHeapSize());
         SOAR_PRINT("Debug Task Runtime  \t: %d ms\n\n", TICKS_TO_MS(xTaskGetTickCount()));
+    } else if (strcmp(msg,"testflash") == 0) {
+    	SOAR_PRINT("testing");
+    	FlashFileSystem fs;
+    	if(fs.Init()) {
+    		SOAR_PRINT("INIT Success\n");
+    	} else {
+    		SOAR_PRINT("Fail\n");
+    	}
     }
     else {
         // Single character command, or unknown command

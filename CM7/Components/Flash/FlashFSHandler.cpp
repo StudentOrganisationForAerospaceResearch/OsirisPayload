@@ -10,10 +10,54 @@
 #include "CubeDefines.hpp"
 
 bool FlashFileSystem::Init() {
-	SOAR_PRINT("Gloobing...\n");
-
 	int mountattempts = 0;
+	e_flash_status f = flashChipHandle.init();
+	if(f == FLASH_OK) {
+		SOAR_PRINT("Initialized flash chip\n");
+	} else {
+		SOAR_PRINT("Could not initialize flash chip.\n");
+		return false;
+	}
 
+#if 0
+	flashChipHandle.eraseChip();
+	uint8_t* test_data = new uint8_t[5000];
+	for(int i = 0; i < 5000; i++) {
+		test_data[i] = i % 256;
+	}
+	flashChipHandle.write(test_data, 0x00, 5000);
+	memset(test_data,0x09,5000);
+	flashChipHandle.read(test_data, 0x00, 5000);
+	for(auto i = 0; i < 5000; i++) {
+		if(test_data[i] != i%256) {
+			SOAR_PRINT("Read fail at %d, wanted %d, was %d\n",i, i%256, test_data[i]);
+		}
+	}
+	SOAR_PRINT("Read complete 1\n");
+
+
+	for(int i = 0; i < 5000; i++) {
+		test_data[i] = (i*i) % 256;
+	}
+	flashChipHandle.write(test_data, 2001, 5000);
+	memset(test_data,0x09,5000);
+	flashChipHandle.read(test_data, 2001, 5000);
+	for(auto i = 0; i < 5000; i++) {
+		if(test_data[i] != (i*i)%256) {
+			SOAR_PRINT("Read fail at %d, wanted %d, was %d\n",i, (i*i)%256, test_data[i]);
+		}
+	}
+
+	SOAR_PRINT("Read complete 2\n");
+	//flashChipHandle.eraseSmallestSection(0x62);
+	//flashChipHandle.write(test_data, 0x62, sizeof(test_data));
+	//memset(test_data,0x00,sizeof(test_data));
+	//flashChipHandle.read(test_data, 0x62, sizeof(test_data));
+#endif
+
+
+	// Use LittleFS (currently does not work)
+#if 0
 	while(1) {
 		int e = lfs_mount(&LFS, &LFSCONFIG);
 
@@ -23,10 +67,15 @@ bool FlashFileSystem::Init() {
 				SOAR_PRINT("Mounted LittleFS.\n");
 				return (initialized = true);
 			} else {
-				SOAR_PRINT("Could not mount LittleFS,  reformatting...\n");
+
+				SOAR_PRINT("Could not mount LittleFS (%d),  reformatting...\n", e);
 				mountattempts++;
-				lfs_format(&LFS, &LFSCONFIG);
-				HAL_Delay(500);
+				int r = lfs_format(&LFS, &LFSCONFIG);
+				if(r != 0) {
+					SOAR_PRINT("Failed format %d\n",r);
+					return false;
+				}
+				SOAR_PRINT("Formatted\n");
 			}
 		} else {
 			if(e == 0) {
@@ -39,6 +88,7 @@ bool FlashFileSystem::Init() {
 			}
 		}
 	}
+#endif
 
 }
 
@@ -87,3 +137,40 @@ void FlashFileSystem::CloseFile(lfs_file_t *file) {
 	lfs_file_close(&LFS, file);
 	currentOpenFileValid = false;
 }
+
+int lfs_ReadWrapper (const struct lfs_config *c, lfs_block_t block,
+		lfs_off_t off, void *buffer, lfs_size_t size) {
+	SOAR_PRINT("readwrapper\n");
+
+	e_flash_status s = ((FlashFileSystem*)(c->context))->flashChipHandle.read((uint8_t*)buffer, block*c->block_size + off, size);
+
+	while(((FlashFileSystem*)(c->context))->flashChipHandle.isBusy());
+	return s;
+}
+
+
+int lfs_WriteWrapper (const struct lfs_config *c, lfs_block_t block,
+		lfs_off_t off, const void *buffer, lfs_size_t size) {
+	SOAR_PRINT("writewrapper\n");
+	e_flash_status s = ((FlashFileSystem*)(c->context))->flashChipHandle.write((uint8_t*)buffer, block*c->block_size + off, size);
+
+	while(((FlashFileSystem*)(c->context))->flashChipHandle.isBusy());
+	return s;
+}
+
+int lfs_SyncWrapper (const struct lfs_config *c) {
+	SOAR_PRINT("sync wrapper\n");
+	return 0;
+}
+
+int lfs_EraseWrapper (const struct lfs_config *c, lfs_block_t block) {
+	SOAR_PRINT("erasewrapper\n");
+	e_flash_status s = ((FlashFileSystem*)(c->context))->flashChipHandle.eraseSmallestSection(block*c->block_size);
+
+	while(((FlashFileSystem*)(c->context))->flashChipHandle.isBusy());
+	return s;
+}
+
+//bool FlashFileSystem::WriteAtFilePos(const uint8_t* buf, size_t size, uint32_t pos) {
+
+//}

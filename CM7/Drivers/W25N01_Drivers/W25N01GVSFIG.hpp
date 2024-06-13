@@ -76,7 +76,7 @@ class W25N01GVSFIG {
         // Member variables
         GPIO_TypeDef*       m_GPIOx;
         uint16_t            m_GPIO_Pin;
-        SPI_HandleTypeDef*  m_HSPIPtr;
+        QSPI_HandleTypeDef*    m_HSPIPtr;
         uint16_t            m_pageAddress;
         uint16_t            m_columnAddress;
 
@@ -84,12 +84,14 @@ class W25N01GVSFIG {
         inline void     m_updatePageAndColumnAddress(uint32_t address);
         void            m_pageDataRead();
         e_flash_status  m_writeEnable();
+        e_flash_status  m_writeStatReg(uint8_t SRNumber, uint8_t val);
         e_flash_status  m_executeProgram();
         uint8_t         m_checkSR(uint8_t SRNumber);
+        //bool			m_QSPIWrite(uint8_t* data, uint16_t size);
 
     public:
         // Constructor and destructor
-        W25N01GVSFIG(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, SPI_HandleTypeDef* HSPIPtr, uint16_t pageAddress, uint16_t columnAddress);
+        W25N01GVSFIG(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, QSPI_HandleTypeDef* HSPIPtr, uint16_t pageAddress, uint16_t columnAddress);
         ~W25N01GVSFIG();
 
         // Public member functions

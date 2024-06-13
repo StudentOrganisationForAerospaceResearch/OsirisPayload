@@ -25,6 +25,9 @@
 #include <stdbool.h>
 #include <string.h>
 #include <inttypes.h>
+#include "stm32h7xx.h"
+#include "FreeRTOS.h"
+#include "portable.h"
 
 #ifndef LFS_NO_MALLOC
 #include <stdlib.h>
