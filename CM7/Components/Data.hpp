@@ -29,8 +29,8 @@ typedef struct BarometerData {
     float marioTemperature;
     float luigiPressure;
     float luigiTemperature;
-    // float bowserPressure;
-    // float bowserTemperature;
+    uint32_t bowserPressure;
+    uint32_t bowserTemperature;
 } BarometerData;
 
 /*

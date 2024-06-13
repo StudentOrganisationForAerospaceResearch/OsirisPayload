@@ -12,7 +12,7 @@
 #include "SystemDefines.hpp"
 #include "main_system.hpp"
 #include "LPS22HH.hpp"
-//#include "MS5611.hpp"
+#include "MS5611.hpp"
 
 /* Macros/Enums ------------------------------------------------------------*/
 enum BARO_COMMANDS {
@@ -48,17 +48,13 @@ private:
     BaroTask(const BaroTask&);             // Prevent copy-construction
     BaroTask& operator=(const BaroTask&);  // Prevent assignment
 
-    void sendPressureData(LPS22HH& mario, LPS22HH& luigi
-    			 	 	 //, MS5611& bowser
-    					 );
-    void sendTemperatureData(LPS22HH& mario, LPS22HH& luigi
-    					 //, MS5611& bowser
-    					 );
+    void sendPressureData(LPS22HH& mario, LPS22HH& luigi, MS5611& bowser);
+    void sendTemperatureData(LPS22HH& mario, LPS22HH& luigi, MS5611& bowser);
 
     // Private Variables
     LPS22HH mario;
     LPS22HH luigi;
-    // MS5611 bowser;
+    MS5611 bowser;
     BarometerData* data;
 };
 
