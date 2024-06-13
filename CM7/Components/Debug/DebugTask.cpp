@@ -15,6 +15,7 @@
 
 // External Tasks (to send debug commands to)
 #include "FlightTask.hpp"
+#include "BaroTask.hpp"
 #include "GPIO.hpp"
 
 /* Macros --------------------------------------------------------------------*/
@@ -122,6 +123,32 @@ void DebugTask::HandleDebugMessage(const char* msg)
         SOAR_PRINT("Lowest Ever Free Heap: %d Bytes\n", xPortGetMinimumEverFreeHeapSize());
         SOAR_PRINT("Debug Task Runtime  \t: %d ms\n\n", TICKS_TO_MS(xTaskGetTickCount()));
     }
+<<<<<<< Updated upstream
+=======
+    else if (strcmp(msg, "test act") == 0) {
+    	SOAR_PRINT("Testing...");
+    	GPIO::SOL1::On();
+    	osDelay(500);
+    	GPIO::SOL2::On();
+    	osDelay(500);
+    	GPIO::SOL3::On();
+    	osDelay(1000);
+    	GPIO::SOL1::Off();
+    	osDelay(500);
+    	GPIO::SOL2::Off();
+    	osDelay(500);
+    	GPIO::SOL3::Off();
+    	SOAR_PRINT("done\n");
+    }
+    else if (strcmp(msg, "test baro") == 0) {
+        // Send a request to the barometer task to print the data
+        SOAR_PRINT("BARO_REQUEST_NEW_SAMPLE\n");
+        BaroTask::Inst().SendCommand(Command(REQUEST_COMMAND, BARO_REQUEST_NEW_SAMPLE));
+        SOAR_PRINT("BARO_REQUEST_DEBUG\n");
+        BaroTask::Inst().SendCommand(Command(REQUEST_COMMAND, BARO_REQUEST_DEBUG));
+        SOAR_PRINT("Done\n");
+    }
+>>>>>>> Stashed changes
     else {
         // Single character command, or unknown command
         switch (msg[0]) {

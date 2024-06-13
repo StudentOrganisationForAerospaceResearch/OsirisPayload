@@ -17,7 +17,7 @@
 //#define data_drdy
 //#define fifo_irq
 
-#define BOOT_TIME 300 //ms
+#define BOOT_TIME 10 //ms
 
 typedef union {
   int16_t i16bit;
@@ -34,7 +34,19 @@ typedef union {
   uint8_t u8bit[6];
 } axis3bit16_t;
 
-class LPS22HH {
+class LPS22HH
+{
+public:
+	LPS22HH(SPI_HandleTypeDef &spi, bool unitSelect);
+
+	// Returns True on Success
+	bool init(void);
+
+	bool readPressure(float &pressureOut);
+	bool readTemperature(float &temperatureOut);
+
+  // bool setInterrupts(bool useInterrupts);
+
 private:
 	SPI_HandleTypeDef spi;
 
@@ -59,16 +71,6 @@ private:
 	static int32_t readReg(void *handle, uint8_t reg, uint8_t *bufp, uint16_t len);
 	static int32_t writeReg(void *handle, uint8_t reg, const uint8_t *bufp, uint16_t len);
 	static void initDelay(uint32_t ms);
-
-public:
-	LPS22HH(SPI_HandleTypeDef &spi, bool unitSelect);
-
-	// Returns True on Success
-	bool init(void);
-	bool readPressure(float &pressureOut);
-	bool readTemperature(float &temperatureOut);
-	
-  // bool setInterrupts(bool useInterrupts);
 };
 
 #endif /* SENSORS_INC_LPS22HH_HPP_ */
