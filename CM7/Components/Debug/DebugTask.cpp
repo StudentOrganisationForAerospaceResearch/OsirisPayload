@@ -24,6 +24,7 @@
 
 /* Constants -----------------------------------------------------------------*/
 constexpr uint8_t DEBUG_TASK_PERIOD = 100;
+extern I2C_HandleTypeDef hi2c2;
 
 /* Variables -----------------------------------------------------------------*/
 
@@ -138,11 +139,6 @@ void DebugTask::HandleDebugMessage(const char* msg)
     	GPIO::SOL3::Off();
     	SOAR_PRINT("done\n");
     }
-    else if (strcmp(msg, "imuread") == 0)
-	{
-    	Command testIMU(REQUEST_COMMAND, IMU_REQUEST_LIN_ACC);
-    	IMUTask::Inst().GetEventQueue()->Send(testIMU);
-	}
     else {
         // Single character command, or unknown command
         switch (msg[0]) {

@@ -71,6 +71,8 @@ enum OsirisControlCommands
 	OSC_RECEIVE_LINACC,
 	OSC_RECEIVE_ANGACC,
 
+	OSC_RECEIVE_PRESSURE,
+	OSC_RECEIVE_TEMPERATURE,
 
     // -- TECHNICAL --
     OSC_NONE   // Invalid command, must be last

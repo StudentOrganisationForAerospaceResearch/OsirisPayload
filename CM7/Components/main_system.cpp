@@ -14,6 +14,7 @@
 #include "DebugTask.hpp"
 #include "FlightTask.hpp"
 #include "IMUTask//Inc//IMUTask.hpp"
+#include "BaroTask.hpp"
 
 /* Drivers ------------------------------------------------------------------*/
 namespace Driver {
@@ -30,6 +31,7 @@ void run_main() {
     DebugTask::Inst().InitTask();
     FlightTask::Inst().InitTask();
     IMUTask::Inst().InitTask();
+    BaroTask::Inst().InitTask();
 
     // Print System Boot Info : Warning, don't queue more than 10 prints before scheduler starts
     SOAR_PRINT("\n-- SOAR SYSTEM --\n");
