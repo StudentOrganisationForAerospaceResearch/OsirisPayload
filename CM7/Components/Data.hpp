@@ -5,7 +5,19 @@
 #ifndef DATA_HPP_
 #define DATA_HPP_
 
+#include <stdint.h>
 #include "SystemDefines.hpp"
+
+typedef struct IMUData {
+	float xAccel;
+	float yAccel;
+	float zAccel;
+} IMUData;
+
+typedef struct AltimeterData {
+	float altitude;
+	float temp;
+} AltimeterData;
 
 /*
  *  mario  = Experiment Board LPS22HH U3
