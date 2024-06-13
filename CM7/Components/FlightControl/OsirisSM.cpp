@@ -7,6 +7,8 @@
 #include <OsirisSM.hpp>
 #include "SystemDefines.hpp"
 #include "GPIO.hpp"
+#include "Data.hpp"
+#include "IMUTask//Inc//IMUTask.hpp"
 
 /* Osiris State Machine ------------------------------------------------------------------*/
 
@@ -106,7 +108,13 @@ PreLaunch::PreLaunch()
  */
 OsirisState PreLaunch::OnEnter()
 {
+	//Baisic IO
 	PreLaunch::CloseAllPeripherals();
+	GPIO::LED_GREEN::On();
+
+//	//TODO Init Madgewick filter
+//	madFilter.initialise();
+
     return osStateID;
 }
 
@@ -125,19 +133,19 @@ OsirisState PreLaunch::OnExit()
 OsirisState PreLaunch::HandleControlSOLS12(OsirisControlCommands ocAction, OsirisState currentState) {
 	switch(ocAction) {
 		case OSC_OPEN_SOL1:
-			// TODO : Complete
+			GPIO::SOL1::On();
 			break;
 
 		case OSC_CLOSE_SOL1:
-			// TODO : Complete
+			GPIO::SOL1::Off();
 			break;
 
 		case OSC_OPEN_SOL2:
-			// TODO : Complete
+			GPIO::SOL2::On();
 			break;
 
 		case OSC_CLOSE_SOL2:
-			// TODO : Complete
+			GPIO::SOL2::Off();
 			break;
 
 		default:
@@ -152,19 +160,19 @@ OsirisState PreLaunch::HandleControlSOLS12(OsirisControlCommands ocAction, Osiri
 OsirisState PreLaunch::HandleControlSOL3Compressor(OsirisControlCommands ocAction, OsirisState currentState) {
 	switch(ocAction) {
 		case OSC_OPEN_SOL3:
-			// TODO : Complete
+			GPIO::SOL3::On();
 			break;
 
 		case OSC_CLOSE_SOL3:
-			// TODO : Complete
+			GPIO::SOL3::Off();
 			break;
 
 		case OSC_COMPRESSOR_ON:
-			// TODO : Complete
+			GPIO::COMPRESSOR::On();
 			break;
 
 		case OSC_COMPRESSOR_OFF:
-			// TODO : Complete
+			GPIO::COMPRESSOR::Off();
 			break;
 
 		default:
@@ -177,7 +185,10 @@ OsirisState PreLaunch::HandleControlSOL3Compressor(OsirisControlCommands ocActio
  * @brief Close all peripherals for safety or functionality
  */
 void PreLaunch::CloseAllPeripherals() {
-	// TODO : CLOSE SOLS AND COMPRESSOR
+	GPIO::SOL1::Off();
+	GPIO::SOL2::Off();
+	GPIO::SOL3::Off();
+	GPIO::COMPRESSOR::Off();
 }
 
 
@@ -209,6 +220,18 @@ OsirisState PreLaunch::HandleCommand(Command& cm)
 			}
 			break;
 		}
+		case DATA_COMMAND: //TODO Delete me, I'm just for a test unpacking this struct
+			switch(cm.GetTaskCommand()) {
+			case OSC_RECEIVE_LINACC:
+				float printBuf[3] = {0, 0, 0};
+				char printBuf2[31];
+				IMUData* data = (IMUData*)cm.GetDataPointer();
+				printBuf[0] = data->xAccel;
+				printBuf[1] = data->yAccel;
+				printBuf[2] = data->zAccel;
+				sprintf(printBuf2, " X: %d\n Y: %d\n Z: %d\n", printBuf[0], printBuf[1], printBuf[2]);
+				SOAR_PRINT(printBuf2);
+			}
 		default:
 			// Do nothing
 			break;

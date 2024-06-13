@@ -9,6 +9,7 @@
 
 #include "Command.hpp"
 
+
 enum OsirisState
 {
 	// -- ON GROUND --
@@ -66,6 +67,9 @@ enum OsirisControlCommands
 	OSC_CLOSE_SOL3,
 	OSC_COMPRESSOR_ON,
 	OSC_COMPRESSOR_OFF,
+
+	OSC_RECEIVE_LINACC,
+	OSC_RECEIVE_ANGACC,
 
 	OSC_RECEIVE_PRESSURE,
 	OSC_RECEIVE_TEMPERATURE,

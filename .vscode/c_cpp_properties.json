@@ -1,0 +1,28 @@
+{
+  "configurations": [
+    {
+      "name": "Mac",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "${workspaceFolder}/Core/Inc",
+        "${workspaceFolder}/Drivers/Inc",
+        "${workspaceFolder}/Libraries/embedded-template-library/include/"
+      ],
+      "defines": [],
+      "macFrameworkPath": [
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+      ],
+      "compilerPath": "/usr/bin/clang",
+      "cStandard": "c17",
+      "cppStandard": "c++17",
+      "intelliSenseMode": "macos-clang-arm64"
+    },
+    {
+      "name": "STM32",
+      "includePath": [],
+      "defines": [],
+      "compilerPath": "C:\\USERS\\AIDEN\\APPDATA\\ROAMING\\CODE\\USER\\GLOBALSTORAGE\\BMD.STM32-FOR-VSCODE\\@XPACK-DEV-TOOLS\\ARM-NONE-EABI-GCC\\13.2.1-1.1.1\\.CONTENT\\BIN\\ARM-NONE-EABI-GCC.EXE"
+    }
+  ],
+  "version": 4
+}

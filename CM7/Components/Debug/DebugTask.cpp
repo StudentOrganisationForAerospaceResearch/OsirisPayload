@@ -17,6 +17,7 @@
 #include "FlightTask.hpp"
 #include "BaroTask.hpp"
 #include "GPIO.hpp"
+#include "IMUTask//Inc//IMUTask.hpp"
 
 /* Macros --------------------------------------------------------------------*/
 
@@ -24,6 +25,7 @@
 
 /* Constants -----------------------------------------------------------------*/
 constexpr uint8_t DEBUG_TASK_PERIOD = 100;
+extern I2C_HandleTypeDef hi2c2;
 
 /* Variables -----------------------------------------------------------------*/
 
@@ -123,8 +125,6 @@ void DebugTask::HandleDebugMessage(const char* msg)
         SOAR_PRINT("Lowest Ever Free Heap: %d Bytes\n", xPortGetMinimumEverFreeHeapSize());
         SOAR_PRINT("Debug Task Runtime  \t: %d ms\n\n", TICKS_TO_MS(xTaskGetTickCount()));
     }
-<<<<<<< Updated upstream
-=======
     else if (strcmp(msg, "test act") == 0) {
     	SOAR_PRINT("Testing...");
     	GPIO::SOL1::On();
@@ -140,15 +140,6 @@ void DebugTask::HandleDebugMessage(const char* msg)
     	GPIO::SOL3::Off();
     	SOAR_PRINT("done\n");
     }
-    else if (strcmp(msg, "test baro") == 0) {
-        // Send a request to the barometer task to print the data
-        SOAR_PRINT("BARO_REQUEST_NEW_SAMPLE\n");
-        BaroTask::Inst().SendCommand(Command(REQUEST_COMMAND, BARO_REQUEST_NEW_SAMPLE));
-        SOAR_PRINT("BARO_REQUEST_DEBUG\n");
-        BaroTask::Inst().SendCommand(Command(REQUEST_COMMAND, BARO_REQUEST_DEBUG));
-        SOAR_PRINT("Done\n");
-    }
->>>>>>> Stashed changes
     else {
         // Single character command, or unknown command
         switch (msg[0]) {
