@@ -308,16 +308,11 @@ e_flash_status W25N01GVSFIG::init() {
     if (receivedMessagePtr[1] != KEY_W25N01_DEVICE_ID_U)    flashStatus = FLASH_NOT_OK;
     if (receivedMessagePtr[2] != KEY_W25N01_DEVICE_ID_L)    flashStatus = FLASH_NOT_OK;
 
-    uint8_t DEBUG_oldSVal = m_checkSR(1);
-
-
     // Enable writing
     this->m_writeEnable();
 
     this->m_writeStatReg(1, 0x00); // SR-1 settings for Osiris application
 
-
-    uint8_t DEBUG_newSVal = m_checkSR(1);
 
     // Enable writing
     this->m_writeEnable();

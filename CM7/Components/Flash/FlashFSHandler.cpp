@@ -90,6 +90,7 @@ bool FlashFileSystem::Init() {
 	}
 #endif
 
+	return true;
 }
 
 inline bool FlashFileSystem::GetInitialized() {
@@ -171,6 +172,19 @@ int lfs_EraseWrapper (const struct lfs_config *c, lfs_block_t block) {
 	return s;
 }
 
-//bool FlashFileSystem::WriteAtFilePos(const uint8_t* buf, size_t size, uint32_t pos) {
+bool FlashFileSystem::WriteAt(uint8_t *data, size_t size, uint32_t addr) {
+	return flashChipHandle.write(data, addr, size) == FLASH_OK;
+}
 
-//}
+bool FlashFileSystem::ReadAt(uint8_t *dataout, size_t size, uint32_t addr) {
+	return flashChipHandle.read(dataout, addr, size) == FLASH_OK;
+}
+
+bool FlashFileSystem::EraseBlock(uint32_t addr) {
+	return flashChipHandle.eraseSmallestSection(addr) == FLASH_OK;
+}
+
+bool FlashFileSystem::EraseChip() {
+	return flashChipHandle.eraseChip() == FLASH_OK;
+}
+

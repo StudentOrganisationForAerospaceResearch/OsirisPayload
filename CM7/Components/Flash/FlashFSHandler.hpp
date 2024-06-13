@@ -20,9 +20,6 @@ int lfs_EraseWrapper(const struct lfs_config *c, lfs_block_t block);
 
 int lfs_SyncWrapper(const struct lfs_config *c);
 
-static uint8_t readbuf[2112];
-static uint8_t progbuf[2112];
-static uint8_t lookbuf[2112];
 
 class FlashFileSystem {
 public:
@@ -35,7 +32,10 @@ public:
 	bool OpenFile(const char* const filename);
 	void CloseFile(lfs_file_t *file);
 
-	//bool WriteAtFilePos(const uint8_t* buf, size_t size, uint32_t pos);
+	bool WriteAt(uint8_t* data, size_t size, uint32_t addr);
+	bool ReadAt(uint8_t* dataout, size_t size, uint32_t addr);
+	bool EraseBlock(uint32_t addr);
+	bool EraseChip();
 
 	W25N01GVSFIG flashChipHandle = {GPIOB, GPIO_PIN_10, nullptr, 0, 0};
 
