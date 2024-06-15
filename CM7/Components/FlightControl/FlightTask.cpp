@@ -34,6 +34,7 @@ void FlightTask::InitTask()
             (TaskHandle_t*)&rtTaskHandle);
 
     SOAR_ASSERT(rtValue == pdPASS, "FlightTask::InitTask() - xTaskCreate() failed");
+    GPIO::LED_GREEN::On();
 }
 
 /**
@@ -52,7 +53,6 @@ void FlightTask::Run(void * pvParams)
         bool res = qEvtQueue->ReceiveWait(cm);
         if(res)
             HandleCommand(cm);
-
     }
 }
 

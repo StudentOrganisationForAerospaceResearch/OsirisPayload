@@ -64,6 +64,28 @@ namespace GPIO
 
 		inline bool IsOn() { return HAL_GPIO_ReadPin(COMPRESSOR_GPIO_Port, COMPRESSOR_Pin) == GPIO_PIN_SET; }
 	}
+
+	namespace SPI2_CS {
+	inline void On() { HAL_GPIO_WritePin(SPI2_CS_GPIO_Port, SPI2_CS_Pin, GPIO_PIN_SET); }
+	inline void Off() { HAL_GPIO_WritePin(SPI2_CS_GPIO_Port, SPI2_CS_Pin, GPIO_PIN_RESET); }
+
+	inline bool IsOn() { return HAL_GPIO_ReadPin(SPI2_CS_GPIO_Port, SPI2_CS_Pin) == GPIO_PIN_SET; }
+
+	// LPS22HH U3
+	namespace MARIO {
+		inline void Set() { HAL_GPIO_WritePin(MARIO_CS_GPIO_Port, MARIO_CS_Pin, GPIO_PIN_SET); }
+		inline void Reset() { HAL_GPIO_WritePin(MARIO_CS_GPIO_Port, MARIO_CS_Pin, GPIO_PIN_RESET); }
+
+		inline bool IsOn() { return HAL_GPIO_ReadPin(MARIO_CS_GPIO_Port, MARIO_CS_Pin) == GPIO_PIN_SET; }
+	}
+
+	// LPS22HH U4
+	namespace LUIGI {
+		inline void Set() { HAL_GPIO_WritePin(LUIGI_CS_GPIO_Port, LUIGI_CS_Pin, GPIO_PIN_SET); };
+		inline void Reset() { HAL_GPIO_WritePin(LUIGI_CS_GPIO_Port, LUIGI_CS_Pin, GPIO_PIN_RESET); };
+
+		inline bool IsOn() { return HAL_GPIO_ReadPin(LUIGI_CS_GPIO_Port, LUIGI_CS_Pin) == GPIO_PIN_SET; }
+	}
 }
 
 #endif /* PAYLOAD_INCLUDE_SOAR_CORE_GPIO_H */
