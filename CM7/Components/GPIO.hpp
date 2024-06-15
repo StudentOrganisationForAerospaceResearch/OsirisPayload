@@ -66,11 +66,11 @@ namespace GPIO
 	}
 
 	namespace SPI2_CS {
-	inline void On() { HAL_GPIO_WritePin(SPI2_CS_GPIO_Port, SPI2_CS_Pin, GPIO_PIN_SET); }
-	inline void Off() { HAL_GPIO_WritePin(SPI2_CS_GPIO_Port, SPI2_CS_Pin, GPIO_PIN_RESET); }
-	inline void Toggle() { HAL_GPIO_TogglePin(SPI2_CS_GPIO_Port, SPI2_CS_Pin); }
+		inline void On() { HAL_GPIO_WritePin(SPI2_CS_GPIO_Port, SPI2_CS_Pin, GPIO_PIN_SET); }
+		inline void Off() { HAL_GPIO_WritePin(SPI2_CS_GPIO_Port, SPI2_CS_Pin, GPIO_PIN_RESET); }
+		inline void Toggle() { HAL_GPIO_TogglePin(SPI2_CS_GPIO_Port, SPI2_CS_Pin); }
 
-	inline bool IsOn() { return HAL_GPIO_ReadPin(SPI2_CS_GPIO_Port, SPI2_CS_Pin) == GPIO_PIN_SET; }
+		inline bool IsOn() { return HAL_GPIO_ReadPin(SPI2_CS_GPIO_Port, SPI2_CS_Pin) == GPIO_PIN_SET; }
 	}
 }
 

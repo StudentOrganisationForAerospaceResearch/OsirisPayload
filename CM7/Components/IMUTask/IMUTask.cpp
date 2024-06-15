@@ -47,14 +47,14 @@ void IMUTask::Run(void *pvParams)
 {
 
 //	initialize low-level drivers
-	while (!toopy.init()) {osDelay(30);}
-	toopy.setInterrupts(false);
-	toopy.setAccelMax(G4);
-	toopy.setGyroMax(DPS500);
-	toopy.setAccelSpeed(IMUTASK_ODR);
-	toopy.setGyroSpeed(IMUTASK_ODR);
-	toopy.setAccelOffsetState(true);
-	toopy.setAccelOffset(0, 0, 0, STRONG); //TODO set these to numbers that make sense
+//	while (!toopy.init()) {osDelay(30);}
+//	toopy.setInterrupts(false);
+//	toopy.setAccelMax(G4);
+//	toopy.setGyroMax(DPS500);
+//	toopy.setAccelSpeed(IMUTASK_ODR);
+//	toopy.setGyroSpeed(IMUTASK_ODR);
+//	toopy.setAccelOffsetState(true);
+//	toopy.setAccelOffset(0, 0, 0, STRONG); //TODO set these to numbers that make sense
 
 	GPIO::SPI2_CS::On();
 	while(!binoo.init()) {osDelay(30);}

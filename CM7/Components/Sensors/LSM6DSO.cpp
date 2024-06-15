@@ -28,7 +28,13 @@ bool LSM6DSO::init(bool useInterrupts, uint16_t interruptPin)
 	if (interruptPin == -1 && usingInterrupts) return false;
 
 	uint8_t buf = 0;
-	initStatus = readReg(WHO_AM_I, &buf);
+	while (buf != CORRECT_ID) {
+		initStatus = readReg(WHO_AM_I, &buf);
+		osDelay(100);
+		writeReg(CTRL_3, 0x03);
+		osDelay(100);
+	}
+
 	initStatus = initStatus && (buf == CORRECT_ID);
 //	&& setAccelSpeed(DEFAULT_SPEED) &&
 //				setGyroSpeed(DEFAULT_SPEED) &&
@@ -88,8 +94,9 @@ bool LSM6DSO::readReg(uint16_t regAddr, uint8_t *output)
 	} else {
 		uint8_t* buf = (uint8_t*)&regAddr;
 		GPIO::SPI2_CS::Off();
-		HAL_SPI_Transmit(&spi, buf, 1, 100);
-		HAL_SPI_Receive(&spi, buf, 1, 100);
+//		HAL_SPI_Transmit(&spi, buf, 1, 100);
+//		HAL_SPI_Receive(&spi, buf, 1, 100);
+		HAL_SPI_TransmitReceive(&spi, buf, buf, 1, 100);
 		GPIO::SPI2_CS::On();
 		output = buf;
 		return true;
@@ -151,8 +158,11 @@ bool LSM6DSO::writeReg(uint16_t regAddr, uint8_t value)
 	{
 		return (HAL_OK == HAL_I2C_Mem_Write(&i2c, I2C_WRITE_ADDRESS, regAddr, 1, &value, 1, 100));
 	} else {
+		GPIO::SPI2_CS::Off();
 		uint8_t msg[2] = {regAddr, value};
-		return HAL_SPI_Transmit(&spi, msg, 2, 100);
+		HAL_SPI_Transmit(&spi, msg, 2, 100);
+		GPIO::SPI2_CS::On();
+		return true;
 	}
 
 }
