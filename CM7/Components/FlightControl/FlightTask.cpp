@@ -4,7 +4,7 @@
  * Description        : Primary flight task, default task for the system.
  ******************************************************************************
 */
-#include <OsirisSM.hpp>
+#include "OsirisSM.hpp"
 #include "FlightTask.hpp"
 #include "GPIO.hpp"
 #include "SystemDefines.hpp"
