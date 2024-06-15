@@ -58,9 +58,12 @@ void AltimeterTask::Run(void * pvParams)
 
         //Process commands in blocking mode
         Command cm;
-        bool res = qEvtQueue->ReceiveWait(cm);
-        if(res) {
+
+        if(qEvtQueue->Receive(cm, 100)) {
             HandleCommand(cm);
+        }
+        else {
+            SampleAltimeter();
         }
     }
 }
@@ -77,6 +80,9 @@ void AltimeterTask::HandleCommand(Command& cm)
             switch(cm.GetTaskCommand()) {
                 case ALTIMETER_REQUEST_POLL:
                     SampleAltimeter();
+                    break;
+                case SEND_TO_ALTITUDE_TO_EVEREST:
+                    SendAltitudeToAltimeterFilter();
                     break;
                 default:
                     break;
@@ -99,4 +105,14 @@ void AltimeterTask::SampleAltimeter()
 
     data->altitude = (int32_t) alt;
     data->timestamp = HAL_GetTick();
+}
+
+/**
+ * @brief This function sends the latest sample of altitude data to the altimeter filter (Everest)
+ * 
+ */
+void AltimeterTask::SendAltitudeToAltimeterFilter() {
+    Command cmd(DATA_COMMAND, (uint16_t)BOWSERTASK_ALTITUDE);
+    cmd.CopyDataToCommand((uint8_t*)data, sizeof(AltimeterData));
+    Everest::Inst().GetEventQueue()->Send(cmd);
 }

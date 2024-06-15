@@ -18,6 +18,7 @@ enum AltimeterTaskRequests
 	ALTIMETER_REQUEST_NONE = 0,
 	ALTIMETER_REQUEST_POLL,  // Poll Request
     ALTIMETER_REQUEST_DEBUG, // Debug Poll + Print
+    SEND_TO_ALTITUDE_TO_EVEREST,
 };
 
 class AltimeterTask : public Task
@@ -39,17 +40,19 @@ protected:
 
     void SampleAltimeter();
 
-    AltimeterData* data;
-    uint32_t timestampPT;
+    
 
 private:
     // Private Functions
     AltimeterTask();        // Private constructor
     AltimeterTask(const AltimeterTask&);                        // Prevent copy-construction
     AltimeterTask& operator=(const AltimeterTask&);            // Prevent assignment
+    void SendAltitudeToAltimeterFilter();
 
     // Private Variables
-    
+    AltimeterData* data;
+    uint32_t timestampPT;
+
 };
 
 #endif    // SOAR_ALTIMETERTASK_HPP

@@ -6,6 +6,7 @@
 #define DATA_HPP_
 
 #include "SystemDefines.hpp"
+#include "stdint.h"
 
 /*
  *  mario  = Experiment Board LPS22HH U3
@@ -22,8 +23,8 @@ typedef struct BarometerData {
 } BarometerData;
 
 typedef struct AltimeterData {
-    int32_t altitude;
-    int32_t timestamp;
+    uint32_t altitude;  // scale the the data by 100 when sending to achieve a 2 decimal point accuracy
+    uint32_t timestamp;
 } AltimeterData;
 
 /*
