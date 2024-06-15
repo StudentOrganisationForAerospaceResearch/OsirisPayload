@@ -41,7 +41,7 @@ protected:
     void HandleCommand(Command& cm);
     void HandleRequestCommand(uint16_t taskCommand);
 
-    // void LogDataToFlash();
+    void LogDataToFlash();
 
 private:
     BaroTask();                            // Private constructor

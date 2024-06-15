@@ -19,7 +19,7 @@
 #include "DebugTask.hpp"
 #include "FlightTask.hpp"
 #include "CubeDefines.hpp"
-// #include "FlashTask.hpp"
+#include "FlashTask.hpp"
 
 /* Macros --------------------------------------------------------------------*/
 
@@ -164,14 +164,12 @@ void BaroTask::HandleRequestCommand(uint16_t taskCommand)
 /**
  * @brief Logs barometer data sample to flash
  */
-/*
 void BaroTask::LogDataToFlash()
 {
     Command flashCommand(DATA_COMMAND, WRITE_DATA_TO_FLASH);
     flashCommand.CopyDataToCommand((uint8_t*)data, sizeof(BarometerData));
     FlashTask::Inst().GetEventQueue()->Send(flashCommand);
 }
-*/
 
 /**
  * @brief Sends the pressure data

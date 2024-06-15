@@ -38,8 +38,8 @@ typedef struct BarometerData {
  * Acts as a pointer to the other data structs alongside a timestamp for logging to flash.
  */
 typedef struct AllData {
-	// IMUData*         	 imuData;
-	// AltimeterData* 		 altimeterData;
+	IMUData*         	 imuData;
+	AltimeterData* 		 altimeterData;
     BarometerData*       barometerData;
     uint32_t 			 time;
 } AllData;
