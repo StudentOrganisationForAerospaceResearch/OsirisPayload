@@ -5,7 +5,7 @@
 #ifndef DATA_HPP_
 #define DATA_HPP_
 
-#include <stdint.h>
+#include "stdint.h"
 #include "SystemDefines.hpp"
 
 typedef struct IMUData {
@@ -29,9 +29,15 @@ typedef struct BarometerData {
     float marioTemperature;
     float luigiPressure;
     float luigiTemperature;
-    uint32_t bowserPressure;
-    uint32_t bowserTemperature;
+    // uint32_t bowserPressure;
+    // uint32_t bowserTemperature;
 } BarometerData;
+
+
+typedef struct BarometerAltitudeData {
+    uint32_t marioAltitude;
+    uint32_t luigiAltitude;
+}
 
 /*
  * Data Containers
