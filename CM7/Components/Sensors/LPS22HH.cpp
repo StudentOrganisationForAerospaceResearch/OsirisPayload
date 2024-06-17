@@ -24,16 +24,15 @@ bool LPS22HH::init(void)
 
   // Check device ID
   while (whoamI != LPS22HH_ID) {
-	SOAR_PRINT("WHO_AM_I: 0x%02X\n", whoamI);
-	osDelay(300);
+	//SOAR_PRINT("WHO_AM_I: 0x%02X\n", whoamI);
     lps22hh_reset_set(&lps22hhDriver, PROPERTY_ENABLE);
 	do {
 	  lps22hh_reset_get(&lps22hhDriver, &rst);
 	} while (rst);
-	osDelay(300);
+	osDelay(10);
 	lps22hh_device_id_get(&lps22hhDriver, &whoamI);
   }
-  SOAR_PRINT("WHO_AM_I: 0x%02X\n", whoamI);
+  //SOAR_PRINT("WHO_AM_I: 0x%02X\n", whoamI);
   initStatus = true;
 
   /* Restore default configuration */

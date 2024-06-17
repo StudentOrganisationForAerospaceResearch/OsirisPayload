@@ -1,3 +1,6 @@
 [submodule "CM7/Cube++"]
 	path = CM7/Cube++
 	url = https://github.com/cjchanx/CubePlusPlus.git
+[submodule "CM7/Components/sensor-driverpack"]
+	path = CM7/Components/sensor-driverpack
+	url = https://github.com/cjchanx/sensor-driverpack.git

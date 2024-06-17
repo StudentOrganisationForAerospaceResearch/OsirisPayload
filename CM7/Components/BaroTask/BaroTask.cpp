@@ -19,6 +19,7 @@
 #include "DebugTask.hpp"
 #include "FlightTask.hpp"
 #include "CubeDefines.hpp"
+#include "stdint.h"
 // #include "FlashTask.hpp"
 
 /* Macros --------------------------------------------------------------------*/
@@ -29,7 +30,7 @@
 
 /* Variables -----------------------------------------------------------------*/
 extern SPI_HandleTypeDef hspi2;
-// extern I2C_HandleTypeDef hi2c2;
+extern I2C_HandleTypeDef hi2c2;
 
 /* Prototypes ----------------------------------------------------------------*/
 
@@ -38,7 +39,6 @@ extern SPI_HandleTypeDef hspi2;
  * @brief Default constructor, sets up storage for member variables
  */
 BaroTask::BaroTask() : Task(BARO_TASK_QUEUE_DEPTH_OBJS), mario(hspi2, 0), luigi(hspi2, 1)
-					   //, Bowser(hi2c2)
 {
   data = (BarometerData*)cube_malloc(sizeof(BarometerData));
 }
@@ -73,16 +73,21 @@ void BaroTask::Run(void * pvParams)
   //Initialize the barometers
   mario.init();
   luigi.init();
-  //Bowser.init();
-  osDelay(30);
+  // bowser.init();
+  osDelay(10);
 
   //Main loop
   while (1) {
     Command cm;
-    //Wait forever for a command
-    qEvtQueue->ReceiveWait(cm);
-    //Process the command
-    HandleCommand(cm);
+
+    if(qEvtQueue->Receive(&cm, 1000)) {
+      //Process the command
+      HandleCommand(cm);
+    }
+    else {
+      sampleBarometers();
+    }
+    
   }
 }
 
@@ -124,36 +129,35 @@ void BaroTask::HandleRequestCommand(uint16_t taskCommand)
   //Switch for task specific command within DATA_COMMAND
   switch (taskCommand) 
   {
+  case BARO_REQUEST_DATA_EVEREST:
+    SendDataToEverest();
+    break;
   case BARO_REQUEST_NEW_SAMPLE:
-    mario.readPressure(data->marioPressure);
-    mario.readTemperature(data->marioTemperature);
-    luigi.readPressure(data->luigiPressure);
-    luigi.readTemperature(data->luigiTemperature);
-    // bowser.readPressure(data->bowserPressure);
-    // bowser.readTemperature(data->bowserTemperature);
+    sampleBarometers();
     break;
   case BARO_REQUEST_FLASH_LOG:
     // LogDataToFlash();
     break;
   case BARO_REQUEST_DEBUG:
-	char tx_buffer[1000];
-    SOAR_PRINT("\t-- Mario Data --\n");
+	char tx_buffer[50];
+    SOAR_PRINT("-- Mario Data (LPS22HH U3) --\n");
     sprintf(tx_buffer, "Pressure (mbar)    : %.2f\r\n", data->marioPressure);
     SOAR_PRINT(tx_buffer);
     sprintf(tx_buffer, "Temperature (degC) : %.2f\r\n", data->marioTemperature);
     SOAR_PRINT(tx_buffer);
-    SOAR_PRINT("\t-- Luigi Data --\n");
+
+    SOAR_PRINT("-- Luigi Data (LPS22HH U4) --\n");
     sprintf(tx_buffer, "Pressure (mbar)    : %.2f\r\n", data->luigiPressure);
     SOAR_PRINT(tx_buffer);
     sprintf(tx_buffer, "Temperature (degC) : %.2f\r\n", data->luigiTemperature);
     SOAR_PRINT(tx_buffer);
-    /*
-    SOAR_PRINT("\t-- Bowser Data --\n");
-    sprintf(tx_buffer, "Pressure (mbar)    : %.2f\r\n", data->bowserPressure_);
-    SOAR_PRINT(tx_buffer);
-    sprintf(tx_buffer, "Temperature (degC) : %.2f\r\n", data->bowserTemperature_);
-    SOAR_PRINT(tx_buffer);
-     */
+
+    // SOAR_PRINT("-- Bowser Data (MS5611 U4) --\n");
+    // sprintf(tx_buffer, "Pressure (mbar): %.2f\r\n", static_cast<float>(data->bowserPressure) / 100.0);
+    // SOAR_PRINT(tx_buffer);
+
+    // sprintf(tx_buffer, "Temperature (degC): %.2f\r\n", static_cast<float>(data->bowserTemperature) / 100.0);
+    // SOAR_PRINT(tx_buffer);
     break;
   default:
     SOAR_PRINT("UARTTask - Received Unsupported REQUEST_COMMAND {%d}\n", taskCommand);
@@ -162,24 +166,50 @@ void BaroTask::HandleRequestCommand(uint16_t taskCommand)
 }
 
 /**
- * @brief Logs barometer data sample to flash
+ * @brief Updates the barometer values 
  */
-/*
-void BaroTask::LogDataToFlash()
-{
-    Command flashCommand(DATA_COMMAND, WRITE_DATA_TO_FLASH);
-    flashCommand.CopyDataToCommand((uint8_t*)data, sizeof(BarometerData));
-    FlashTask::Inst().GetEventQueue()->Send(flashCommand);
+void BaroTask::sampleBarometers() {
+  mario.readPressure(data->marioPressure);
+  mario.readTemperature(data->marioTemperature);
+  luigi.readPressure(data->luigiPressure);
+  luigi.readTemperature(data->luigiTemperature);
 }
-*/
+
+/**
+ * @brief Convert the pressure read from the mario barometer to an altitude
+ */
+float BaroTask::marioPressureToAltitude(float marioPressure) {
+  // TODO : Complete this with the relevant equation
+}
+
+/**
+ * @brief Convert the pressure read from the luigi barometer to an altitude
+ */
+float BaroTask::luigiPressureToAltitude(float luigiPressure) {
+  // TODO : Complete this with the relevant equation
+}
+
+/**
+ * @brief Send the data to Everest
+ */
+void Barotask::SendDataToEverest() {
+  uint32_t marioData = marioPressureToAltitude(data->marioPressure);
+  uint32_t luigiData = marioPressureToAltitude(data->luigiPressure);
+  
+  BarometerAltitudeData altitudeData;
+  altitudeData-> marioAltitude = marioData;
+  altitudeData-> luigiAltitude = luigiData;
+  
+  Command cmd(DATA_COMMAND, (uint16_t)BARO_REQUEST_DATA_EVEREST);
+  cmd.CopyDataToCommand((uint8_t*)altitudeData, sizeof(altitudeData));
+  Everest::Inst().GetEventQueue()->Send(cmd);
+}
 
 /**
  * @brief Sends the pressure data
  * @param
  */
-void BaroTask::sendPressureData(LPS22HH& mario, LPS22HH& luigi
-								//, MS5611& bowser
-								)
+void BaroTask::sendPressureData(LPS22HH& mario, LPS22HH& luigi)
 {
   Command baroData(DATA_COMMAND, OSC_RECEIVE_PRESSURE);
   baroData.AllocateData(sizeof(float));
@@ -190,12 +220,10 @@ void BaroTask::sendPressureData(LPS22HH& mario, LPS22HH& luigi
   luigi.readPressure(data->luigiPressure);
   baroData.CopyDataToCommand((uint8_t*)&data->luigiPressure, sizeof(float));
 
-  /*
-  bowser.readPressure(data->bowserPressure);
-  baroData.CopyDataToCommand((uint8_t*)&data->bowserPressure, sizeof(float));
-  */
+  // bowser.readPressure(data->bowserPressure);
+  // baroData.CopyDataToCommand((uint8_t*)&data->bowserPressure, sizeof(float));
 
-  FlightTask::Inst().GetEventQueue()->Send(baroData);
+  // FlightTask::Inst().GetEventQueue()->Send(baroData);  DO NOT SEND TO FLIGHT TASK
 }
 
 /**
@@ -203,9 +231,7 @@ void BaroTask::sendPressureData(LPS22HH& mario, LPS22HH& luigi
  * @brief Sends the temperature data
  * @param
  */
-void BaroTask::sendTemperatureData(LPS22HH& mario, LPS22HH& luigi
-								  //, MS5611& bowser
-								  )
+void BaroTask::sendTemperatureData(LPS22HH& mario, LPS22HH& luigi, MS5611& bowser)
 {
   Command baroData(DATA_COMMAND, OSC_RECEIVE_TEMPERATURE);
   baroData.AllocateData(sizeof(float));
@@ -216,10 +242,8 @@ void BaroTask::sendTemperatureData(LPS22HH& mario, LPS22HH& luigi
   luigi.readTemperature(data->luigiTemperature);
   baroData.CopyDataToCommand((uint8_t*)&data->luigiTemperature, sizeof(float));
 
-  /*
-  bowser.readTemperature(data->bowserTemperature);
-  baroData.CopyDataToCommand((uint8_t*)&data->bowserTemperature, sizeof(float));
-  */
+  // bowser.readTemperature(data->bowserTemperature);
+  // baroData.CopyDataToCommand((uint8_t*)&data->bowserTemperature, sizeof(float));
 
-  FlightTask::Inst().GetEventQueue()->Send(baroData);
+  // FlightTask::Inst().GetEventQueue()->Send(baroData);  DO NOT SEND TO FLIGHT TASK
 }

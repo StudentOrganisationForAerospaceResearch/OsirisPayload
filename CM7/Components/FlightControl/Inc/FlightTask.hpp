@@ -6,7 +6,7 @@
 */
 #ifndef SOAR_FLIGHTTASK_HPP_
 #define SOAR_FLIGHTTASK_HPP_
-#include <OsirisSM.hpp>
+#include "OsirisSM.hpp"
 #include "Task.hpp"
 #include "SystemDefines.hpp"
 

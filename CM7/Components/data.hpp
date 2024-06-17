@@ -33,6 +33,10 @@ typedef struct BarometerData {
     // uint32_t bowserTemperature;
 } BarometerData;
 
+typedef struct AltimeterData {
+    uint32_t altitude;  // scale the the data by 100 when sending to achieve a 2 decimal point accuracy
+    uint32_t timestamp;
+} AltimeterData;
 
 typedef struct BarometerAltitudeData {
     uint32_t marioAltitude;
@@ -49,5 +53,11 @@ typedef struct AllData {
     BarometerData*       barometerData;
     uint32_t 			 time;
 } AllData;
+// Used to send the 3 newest altitude data points
+typedef struct LastThreePoints {
+	uint16_t point1;
+	uint16_t point2;
+	uint16_t point3;
+} LastThreePoints;
 
 #endif /* DATA_HPP_ */

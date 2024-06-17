@@ -12,7 +12,7 @@
 #include "SystemDefines.hpp"
 #include "main_system.hpp"
 #include "LPS22HH.hpp"
-//#include "MS5611.hpp"
+#include "MS5611.hpp"
 
 /* Macros/Enums ------------------------------------------------------------*/
 enum BARO_COMMANDS {
@@ -20,6 +20,7 @@ enum BARO_COMMANDS {
     BARO_REQUEST_NEW_SAMPLE,  // Get new barometer samples, task will be blocked for polling time
     BARO_REQUEST_DEBUG,       // Send the current barometer data over the Debug UART
     BARO_REQUEST_FLASH_LOG,   // Log the current barometer data to flash
+    BARO_REQUEST_DATA_EVEREST,
 };
 
 /* Class ------------------------------------------------------------------*/
@@ -48,18 +49,20 @@ private:
     BaroTask(const BaroTask&);             // Prevent copy-construction
     BaroTask& operator=(const BaroTask&);  // Prevent assignment
 
-    void sendPressureData(LPS22HH& mario, LPS22HH& luigi
-    			 	 	 //, MS5611& bowser
-    					 );
-    void sendTemperatureData(LPS22HH& mario, LPS22HH& luigi
-    					 //, MS5611& bowser
-    					 );
+    void sendPressureData(LPS22HH& mario, LPS22HH& luigi);
+    void sendTemperatureData(LPS22HH& mario, LPS22HH& luigi);
+    void sampleBarometers();
+    void SendDataToEverest();
 
     // Private Variables
     LPS22HH mario;
     LPS22HH luigi;
     // MS5611 bowser;
     BarometerData* data;
+
+    // Helper Functions
+    float marioPressureToAltitude(float marioPressure);
+    float luigiPressureToAltitude(float luigiPressure);
 };
 
 #endif /* BAROTASK_INC_BAROTASK_HPP_ */
