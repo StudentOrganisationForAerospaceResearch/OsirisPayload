@@ -5,8 +5,19 @@
 #ifndef DATA_HPP_
 #define DATA_HPP_
 
-#include "SystemDefines.hpp"
 #include "stdint.h"
+#include "SystemDefines.hpp"
+
+typedef struct IMUData {
+	float xAccel;
+	float yAccel;
+	float zAccel;
+} IMUData;
+
+typedef struct AltimeterData {
+	float altitude;
+	float temp;
+} AltimeterData;
 
 /*
  *  mario  = Experiment Board LPS22HH U3
@@ -18,8 +29,8 @@ typedef struct BarometerData {
     float marioTemperature;
     float luigiPressure;
     float luigiTemperature;
-    // float bowserPressure;
-    // float bowserTemperature;
+    // uint32_t bowserPressure;
+    // uint32_t bowserTemperature;
 } BarometerData;
 
 typedef struct AltimeterData {
@@ -27,19 +38,21 @@ typedef struct AltimeterData {
     uint32_t timestamp;
 } AltimeterData;
 
+typedef struct BarometerAltitudeData {
+    uint32_t marioAltitude;
+    uint32_t luigiAltitude;
+}
+
 /*
  * Data Containers
  * Acts as a pointer to the other data structs alongside a timestamp for logging to flash.
  */
 typedef struct AllData {
-    // IMUData*              imuData;
+	// IMUData*         	 imuData;
+	// AltimeterData* 		 altimeterData;
     BarometerData*       barometerData;
-    AltimeterData*       altimeterData;
-    uint32_t             time;
+    uint32_t 			 time;
 } AllData;
-
-
-
 // Used to send the 3 newest altitude data points
 typedef struct LastThreePoints {
 	uint16_t point1;
