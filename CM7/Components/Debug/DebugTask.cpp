@@ -16,6 +16,7 @@
 // External Tasks (to send debug commands to)
 #include "FlightTask.hpp"
 #include "GPIO.hpp"
+#include "FlashTask//Inc//FlashTask.hpp"
 
 /* Macros --------------------------------------------------------------------*/
 
@@ -121,14 +122,22 @@ void DebugTask::HandleDebugMessage(const char* msg)
         SOAR_PRINT("Current System Free Heap: %d Bytes\n", xPortGetFreeHeapSize());
         SOAR_PRINT("Lowest Ever Free Heap: %d Bytes\n", xPortGetMinimumEverFreeHeapSize());
         SOAR_PRINT("Debug Task Runtime  \t: %d ms\n\n", TICKS_TO_MS(xTaskGetTickCount()));
-    } else if (strcmp(msg,"testflash") == 0) {
+    } else if (strcmp(msg,"testflash") == 0) { //TODO delete me
     	SOAR_PRINT("testing");
-    	FlashFileSystem fs;
-    	if(fs.Init()) {
-    		SOAR_PRINT("INIT Success\n");
-    	} else {
-    		SOAR_PRINT("Fail\n");
-    	}
+    	Command test(TASK_SPECIFIC_COMMAND, FHT_GROUND);
+		uint8_t testData = 230;
+		test.CopyDataToCommand(&testData, 1);
+		FlashTask::Inst().GetEventQueue()->Send(test);
+
+		Command test2(TASK_SPECIFIC_COMMAND, FHT_APOGEE);
+		uint8_t test2Data = 230;
+		test2.CopyDataToCommand(&test2Data, 1);
+		FlashTask::Inst().GetEventQueue()->Send(test2);
+
+    } else if (strcmp(msg, "eraseflash") == 0){
+    	SOAR_PRINT("Erasing...");
+    	Command erase(TASK_SPECIFIC_COMMAND, FHT_ERASE);
+    	FlashTask::Inst().GetEventQueue()->Send(erase);
     }
     else {
         // Single character command, or unknown command

@@ -9,6 +9,8 @@
 #include "GPIO.hpp"
 #include "SystemDefines.hpp"
 
+#include "FlashTask//Inc//FlashTask.hpp" //TODO delete me
+
 /**
  * @brief Constructor for FlightTask
  */
@@ -44,6 +46,7 @@ void FlightTask::Run(void * pvParams)
 {
 
 	osm_ = new OsirisSM(OS_PRELAUNCH, true);
+
 
     while (1) {
 

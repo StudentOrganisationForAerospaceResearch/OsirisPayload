@@ -10,7 +10,6 @@
 #include "Task.hpp"
 #include "SystemDefines.hpp"
 #include "UARTDriver.hpp"
-#include "Flash/FlashFSHandler.hpp"
 
 /* Enums ------------------------------------------------------------------*/
 enum DEBUG_TASK_COMMANDS {
@@ -57,10 +56,6 @@ protected:
     uint8_t debugRxChar; // Character received from UART Interrupt
 
     UARTDriver* const kUart_; // UART Driver
-
-    // TEMP: testing flash thing
-    FlashFileSystem fs;
-
 
 private:
     DebugTask(); // Private constructor

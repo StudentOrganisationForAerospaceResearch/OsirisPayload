@@ -55,6 +55,11 @@ constexpr uint8_t FLIGHT_TASK_RTOS_PRIORITY = 2;            // Priority of the d
 constexpr uint8_t FLIGHT_TASK_QUEUE_DEPTH_OBJS = 10;        // Size of the debug task queue
 constexpr uint16_t FLIGHT_TASK_STACK_DEPTH_WORDS = 512;        // Size of the debug task stack
 
+//Flash Task
+constexpr uint8_t FLASH_TASK_RTOS_PRIORITY = 2;            // Priority of the FLASH task
+constexpr uint8_t FLASH_TASK_QUEUE_DEPTH_OBJS = 10;        // Size of the FLASH task queue
+constexpr uint16_t FLASH_TASK_STACK_DEPTH_WORDS = 512;        // Size of the FLASH task stack
+
 
 
 #endif // CUBE_MAIN_SYSTEM_DEFINES_H

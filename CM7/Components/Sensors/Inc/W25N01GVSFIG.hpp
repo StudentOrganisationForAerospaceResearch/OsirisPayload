@@ -70,7 +70,6 @@ enum e_flash_status {
 };
 typedef enum e_flash_status e_flash_status;
 
-
 class W25N01GVSFIG {
     private:
         // Member variables

@@ -5,10 +5,135 @@
  *      Author: goada
  */
 
-#include "FlashFSHandler.hpp"
 #include "Command.hpp"
-#include "CubeDefines.hpp"
+#include "Task.hpp"
+#include "FlashTask//Inc//FlashTask.hpp"
+#include "Data.hpp"
 
+FlashTask::FlashTask() : Task(FLASH_TASK_QUEUE_DEPTH_OBJS)
+{
+}
+
+void FlashTask::InitTask()
+{
+    // Make sure the task is not already initialized
+    SOAR_ASSERT(rtTaskHandle == nullptr, "Cannot initialize flash task twice");
+
+    BaseType_t rtValue =
+        xTaskCreate((TaskFunction_t)FlashTask::RunTask,
+            (const char*)"FlashTask",
+            (uint16_t)FLASH_TASK_STACK_DEPTH_WORDS,
+            (void*)this,
+            (UBaseType_t)FLASH_TASK_RTOS_PRIORITY,
+            (TaskHandle_t*)&rtTaskHandle);
+
+    SOAR_ASSERT(rtValue == pdPASS, "FlashTask::InitTask() - xTaskCreate() failed");
+}
+
+
+void FlashTask::Run()
+{
+
+	while(flashChipHandle.init() != FLASH_OK) {osDelay(30);}
+	uint8_t buf = 0xff;
+	stateLoggingAddress = 0;
+	do
+	{
+		flashChipHandle.read(&buf, stateLoggingAddress, 1);
+		stateLoggingAddress += 20;
+	} while (buf == 0);
+
+	address.u32 = stateLoggingAddress;
+	stateLoggingAddress -= 20;
+	buf = 0;
+	flashChipHandle.write(&buf, stateLoggingAddress, 1);
+
+	while (1) {
+
+	        //Process commands in blocking mode
+	        Command cm;
+	        bool res = qEvtQueue->ReceiveWait(cm);
+	        if(res)
+	            handleCommand(cm);
+
+	    }
+}
+
+
+void FlashTask::handleCommand(Command& com)
+{
+	switch(com.GetCommand())
+	{
+	case TASK_SPECIFIC_COMMAND: {
+		switch (com.GetTaskCommand())
+		{
+			case FHT_WRITE_DATA: {
+				/* Expects an logFloat* array where:
+				 *  - Element 1 is a pointer to an AllData set (cast as uint16_t*)
+				 *  - 2 is a pointer to the altitude to be recorded
+				 */
+
+				logFloat* toWrite[13] =
+				{
+					&(((AllData*)com.GetDataPointer())->time),
+					&(((AllData*)com.GetDataPointer())->imuData->xAccel),
+					&(((AllData*)com.GetDataPointer())->imuData->yAccel),
+					&(((AllData*)com.GetDataPointer())->imuData->zAccel),
+					&(((AllData*)com.GetDataPointer())->altimeterData->altitude),
+					&(((AllData*)com.GetDataPointer())->altimeterData->temp),
+					&(((AllData*)com.GetDataPointer())->barometerData->marioPressure),
+					&(((AllData*)com.GetDataPointer())->barometerData->marioTemperature),
+					&(((AllData*)com.GetDataPointer())->barometerData->luigiPressure),
+					&(((AllData*)com.GetDataPointer())->barometerData->luigiTemperature),
+					&(((AllData*)com.GetDataPointer())->barometerData->bowserPressure),
+					&(((AllData*)com.GetDataPointer())->barometerData->bowserTemperature),
+					(logFloat*)(com.GetDataPointer() + 1)
+				};
+
+				for (uint8_t i = 0; i < 13; i++)
+				{
+					if (address.u32 <= 100000000)
+					{
+						flashChipHandle.write(toWrite[i]->u8, address.u32, 4);
+						address.u32 += 4;
+					} else {
+						return;
+					}
+
+				}
+				break;
+			}
+			case FHT_APOGEE: {
+				flashChipHandle.write(com.GetDataPointer(), stateLoggingAddress + 5, 4);
+				break;
+			}
+			case FHT_MAIN_1: {
+				flashChipHandle.write(com.GetDataPointer(), stateLoggingAddress + 7, 4);
+				break;
+			}
+			case FHT_MAIN_2: {
+				flashChipHandle.write(com.GetDataPointer(), stateLoggingAddress + 13, 4);
+				break;
+			}
+			case FHT_GROUND: {
+				flashChipHandle.write(com.GetDataPointer(), stateLoggingAddress + 17, 4);
+				flashChipHandle.write(address.u8, stateLoggingAddress + 1, 4);
+				break;
+			}
+			case FHT_ERASE: {
+				flashChipHandle.eraseChip();
+				SOAR_PRINT("done\n");
+				break;
+			}
+		}
+	}
+	default:
+		break;
+	}
+}
+
+
+/*
 bool FlashFileSystem::Init() {
 	int mountattempts = 0;
 	e_flash_status f = flashChipHandle.init();
@@ -55,48 +180,10 @@ bool FlashFileSystem::Init() {
 	//flashChipHandle.read(test_data, 0x62, sizeof(test_data));
 #endif
 
-
-	// Use LittleFS (currently does not work)
-#if 0
-	while(1) {
-		int e = lfs_mount(&LFS, &LFSCONFIG);
-
-		if(mountattempts == 0) {
-			if(e == 0) {
-				// Successfully mounted
-				SOAR_PRINT("Mounted LittleFS.\n");
-				return (initialized = true);
-			} else {
-
-				SOAR_PRINT("Could not mount LittleFS (%d),  reformatting...\n", e);
-				mountattempts++;
-				int r = lfs_format(&LFS, &LFSCONFIG);
-				if(r != 0) {
-					SOAR_PRINT("Failed format %d\n",r);
-					return false;
-				}
-				SOAR_PRINT("Formatted\n");
-			}
-		} else {
-			if(e == 0) {
-				// Successfully mounted
-				SOAR_PRINT("Mounted LittleFS.\n");
-				return (initialized = true);
-			} else {
-				SOAR_PRINT("Could still not mount LittleFS after reformat.\n");
-				return false;
-			}
-		}
-	}
-#endif
-
 	return true;
-}
+}*/
 
-inline bool FlashFileSystem::GetInitialized() {
-	return initialized;
-}
-
+/*
 void FlashFileSystem::TestVerify() {
 
 	OpenFile("test.hi");
@@ -119,7 +206,7 @@ void FlashFileSystem::TestVerify() {
 
 	CloseFile(&currentOpenFile);
 }
-
+/*
 bool FlashFileSystem::OpenFile(const char *const filename) {
 	if(currentOpenFileValid) {
 		CloseFile(&currentOpenFile);
@@ -187,4 +274,5 @@ bool FlashFileSystem::EraseBlock(uint32_t addr) {
 bool FlashFileSystem::EraseChip() {
 	return flashChipHandle.eraseChip() == FLASH_OK;
 }
+*/
 

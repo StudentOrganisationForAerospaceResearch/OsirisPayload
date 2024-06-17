@@ -13,6 +13,7 @@
 #include "CubeTask.hpp"
 #include "DebugTask.hpp"
 #include "FlightTask.hpp"
+#include "FlashTask//Inc//FlashTask.hpp"
 
 /* Drivers ------------------------------------------------------------------*/
 namespace Driver {
@@ -28,6 +29,7 @@ void run_main() {
     CubeTask::Inst().InitTask();
     DebugTask::Inst().InitTask();
     FlightTask::Inst().InitTask();
+    FlashTask::Inst().InitTask();
 
     // Print System Boot Info : Warning, don't queue more than 10 prints before scheduler starts
     SOAR_PRINT("\n-- SOAR SYSTEM --\n");

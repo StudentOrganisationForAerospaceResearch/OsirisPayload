@@ -5,7 +5,7 @@
  * @date    May 18th, 2024
 */
 
-#include "W25N01GVSFIG.hpp"
+#include "Inc//W25N01GVSFIG.hpp"
 #include "SystemDefines.hpp"
 #include <cstring>
 
@@ -300,7 +300,7 @@ e_flash_status W25N01GVSFIG::init() {
     	SOAR_PRINT("Could not receive JEDEC bytes\n");
     	return FLASH_NOT_OK;
     } else {
-    	SOAR_PRINT("Received: %x %x %x\n",receivedMessagePtr[0],receivedMessagePtr[1],receivedMessagePtr[2]);
+//    	SOAR_PRINT("Received: %x %x %x\n",receivedMessagePtr[0],receivedMessagePtr[1],receivedMessagePtr[2]);
     }
 
     // Check for correct received message
