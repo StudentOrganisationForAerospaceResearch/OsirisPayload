@@ -15,6 +15,7 @@
 
 // External Tasks (to send debug commands to)
 #include "FlightTask.hpp"
+#include "BaroTask.hpp"
 #include "GPIO.hpp"
 #include "IMUTask//Inc//IMUTask.hpp"
 
