@@ -72,6 +72,7 @@ static void MX_GPIO_Init(void);
 static void MX_QUADSPI_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_I2C1_Init(void);
+static void MX_I2C2_Init(void);
 static void MX_SPI2_Init(void);
 static void MX_SPI5_Init(void);
 static void MX_USART2_UART_Init(void);
@@ -79,7 +80,6 @@ static void MX_UART4_Init(void);
 static void MX_USART6_UART_Init(void);
 static void MX_SPI6_Init(void);
 static void MX_CRC_Init(void);
-static void MX_I2C2_Init(void);
 void StartDefaultTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
@@ -151,6 +151,7 @@ Error_Handler();
   MX_QUADSPI_Init();
   MX_SPI1_Init();
   MX_I2C1_Init();
+  MX_I2C2_Init();
   MX_SPI2_Init();
   MX_SPI5_Init();
   MX_USART2_UART_Init();
@@ -158,7 +159,6 @@ Error_Handler();
   MX_USART6_UART_Init();
   MX_SPI6_Init();
   MX_CRC_Init();
-  MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
   run_interface();
   #if 0
@@ -816,7 +816,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_15|GPIO_PIN_3|SOL2_Pin|GPIO_PIN_5
-                          |GPIO_PIN_10|SPI2_CS_Pin, GPIO_PIN_RESET);
+                          |GPIO_PIN_10|SPI2_CS, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4|LED_GREEN_Pin|LED_BLUE_Pin|ExpIMUInt2_Pin, GPIO_PIN_RESET);
@@ -837,9 +837,9 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOE, GPIO_PIN_0|GPIO_PIN_1, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : PC15 PC3 SOL2_Pin PC5
-                           PC10 SPI2_CS_Pin */
+                           PC10 SPI2_CS */
   GPIO_InitStruct.Pin = GPIO_PIN_15|GPIO_PIN_3|SOL2_Pin|GPIO_PIN_5
-                          |GPIO_PIN_10|SPI2_CS_Pin;
+                          |GPIO_PIN_10|SPI2_CS;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

@@ -56,7 +56,7 @@ void IMUTask::Run(void *pvParams)
 	toopy.setAccelOffsetState(true);
 	toopy.setAccelOffset(0, 0, 0, STRONG); //TODO set these to numbers that make sense
 
-	GPIO::SPI2_CS::On();
+	GPIO::STUPID::On();
 	while(!binoo.init()) {osDelay(30);}
 	binoo.setInterrupts(false);
 	binoo.setAccelMax(G4);

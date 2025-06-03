@@ -83,8 +83,8 @@ void Error_Handler(void);
 #define LED_BLUE_GPIO_Port GPIOA
 #define ExpIMUInt2_Pin GPIO_PIN_15
 #define ExpIMUInt2_GPIO_Port GPIOA
-#define ExpIMUCS_Pin GPIO_PIN_12
-#define ExpIMUCS_GPIO_Port GPIOC
+#define SPI2_CS GPIO_PIN_12
+#define SPI2_CS_GPIO_Port GPIOC
 #define COMPRESSOR_Pin GPIO_PIN_15
 #define COMPRESSOR_GPIO_Port GPIOG
 #define SOL1_Pin GPIO_PIN_3
