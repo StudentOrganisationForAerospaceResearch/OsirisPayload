@@ -14,11 +14,6 @@ typedef struct IMUData {
 	float zAccel;
 } IMUData;
 
-typedef struct AltimeterData {
-	float altitude;
-	float temp;
-} AltimeterData;
-
 /*
  *  mario  = Experiment Board LPS22HH U3
  *  luigi  = Experiment Board LPS22HH U4
@@ -41,7 +36,7 @@ typedef struct AltimeterData {
 typedef struct BarometerAltitudeData {
     uint32_t marioAltitude;
     uint32_t luigiAltitude;
-}
+} BarometerAltitudeData;
 
 /*
  * Data Containers
